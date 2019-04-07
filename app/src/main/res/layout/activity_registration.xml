@@ -866,15 +866,37 @@
 
             </LinearLayout>
 
+            <EditText
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+
+                android:id="@+id/dummy_input"
+                android:digits="@string/alphanum"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/constituency_not_verified"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+
+                android:backgroundTint="#C63339"
+                android:visibility="invisible"
+
+                />
+
 
 
             <Button
+
+                android:focusableInTouchMode="true"
+                android:focusable="true"
 
                 android:id="@+id/register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:layout_below="@id/constituency_not_verified"
+                android:layout_below="@id/dummy_input"
                 android:layout_centerHorizontal="true"
 
                 android:backgroundTint="#C63339"

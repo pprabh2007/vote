@@ -78,10 +78,6 @@ public class Databasehelper extends SQLiteOpenHelper {
             }while (cur.moveToNext());
         }
 
-        for(String a: cons_list)
-        {
-            Log.d("TAG", a);
-        }
         return cons_list;
 
     }

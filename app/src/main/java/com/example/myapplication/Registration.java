@@ -19,7 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 import util.User;
 
@@ -45,6 +48,7 @@ public class Registration extends AppCompatActivity {
     private Spinner constituencySpinner;
     private EditText constituency_edittext;
     private RadioGroup sex_radiogroup;
+    private EditText dummy;
 
     private User newUser;
     Databasehelper DBHelper;
@@ -67,6 +71,7 @@ public class Registration extends AppCompatActivity {
         sex_radiogroup=findViewById(R.id.radio);
         constituency_edittext=findViewById(R.id.constituency_text_input);
         constituencySpinner=findViewById(R.id.constituency_list_input);
+        dummy=findViewById(R.id.dummy_input);
 
         newUser=new User();
 
@@ -198,14 +203,30 @@ public class Registration extends AppCompatActivity {
                 temp_layout_2=(LinearLayout)findViewById(R.id.email_verified);
                 if(newUser.validateEmail())
                 {
-                    temp_layout_2.setVisibility(View.VISIBLE);
-                    temp_layout_1.setVisibility(View.GONE);
+                    if(DBHelper.checkIfPresent(email))
+                    {
+                        TextView message=findViewById(R.id.email_not_verified_message);
+                        message.setText("Already Registered!");
+
+                        temp_layout_2.setVisibility(View.GONE);
+                        temp_layout_1.setVisibility(View.VISIBLE);
+
+                    }
+                    else {
+
+                        temp_layout_2.setVisibility(View.VISIBLE);
+                        temp_layout_1.setVisibility(View.GONE);
+                    }
 
                 }
                 else
                 {
-                    temp_layout_2.setVisibility(View.GONE);
-                    temp_layout_1.setVisibility(View.VISIBLE);
+                    TextView message=findViewById(R.id.email_not_verified_message);
+                    message.setText("Invalid Email!");
+
+                        temp_layout_2.setVisibility(View.GONE);
+                        temp_layout_1.setVisibility(View.VISIBLE);
+
                 }
 
             }
@@ -373,13 +394,12 @@ public class Registration extends AppCompatActivity {
 
         registrationButton = (Button) findViewById(R.id.register);
 
-
-
-
+        /*
         registrationButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
+                dummy.requestFocus();
                 Context context = getApplicationContext();
                 CharSequence text = "Successfully registered";
 
@@ -390,6 +410,25 @@ public class Registration extends AppCompatActivity {
                 Toast toast = Toast.makeText(context, text, duration);
                 toast.show();
                 finish();
+            }
+        });*/
+
+        registrationButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if(hasFocus)
+                {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Successfully registered";
+
+                    DBHelper.addUser(newUser);
+
+                    int duration = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                    finish();
+                }
             }
         });
 

@@ -3,7 +3,7 @@ package util;
 public class CONSTANTS
 {
     public static final String DATABASE_NAME="DATABASE.db";
-    public static final int VERSION=3;
+    public static final int VERSION=5;
 
     /* TABLE 1*/
     public static final String REGISTRATION_TABLE="REGISTRATION_TABLE";
