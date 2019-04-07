@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:layout_margin="0dp"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:padding="48dp"
+
+            tools:layout_editor_absoluteX="465dp"
+            tools:layout_editor_absoluteY="66dp">
+
+
+            <TextView
+                android:id="@+id/title_label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+
+                android:paddingLeft="4dp"
+                android:text="Title"
+                android:textColor="#000000"
+
+                android:textSize="16sp"
+
+                />
+
+            <EditText
+
+                android:id="@+id/title_input"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_label"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:backgroundTint="#C63339"
+
+                android:hint="Enter Title"
+                android:inputType="text" />
+
+
+            <EditText
+
+                android:id="@+id/description_input"
+
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_below="@id/description_label"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/rounded_edittext"
+                android:gravity="top"
+                android:hint="Describe your issue in brief"
+
+                android:inputType="text|textMultiLine" />
+
+            <TextView
+                android:id="@+id/date_label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/description_input"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+
+                android:layout_marginTop="20dp"
+                android:paddingLeft="4dp"
+
+                android:text="Date"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/drop_downs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:orientation="horizontal"
+
+                android:layout_below="@id/date_label"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+                <Spinner
+
+                    android:id="@+id/dob_y_input"
+
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+                    />
+                <!--android:layout_below="@id/dob_label"-->
+                <!--android:layout_alignParentStart="true"-->
+                <!--android:layout_alignParentLeft="true"-->
+
+
+                <Spinner
+
+                    android:id="@+id/dob_m_input"
+
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="20dp"
+
+                    />
+
+                <Spinner
+
+                    android:id="@+id/dob_d_input"
+
+                    android:layout_width="0dp"
+                    android:layout_weight="1.5"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+
+                    />
+                <!--android:layout_below="@id/dob_label"-->
+                <!--android:layout_toRightOf="@id/dob_y_input"-->
+                <!--android:layout_toEndOf="@id/dob_y_input"-->
+
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/category_box"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="20dp"
+                android:paddingLeft="4dp"
+
+                android:orientation="horizontal"
+
+                android:layout_below="@id/drop_downs"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                >
+
+                <TextView
+                    android:id="@+id/category_label"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+
+                    android:text="Category:"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+
+                    />
+
+                <Spinner
+                    android:id="@+id/category_input"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/constituency_list_box"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="20dp"
+                android:paddingLeft="4dp"
+
+                android:orientation="horizontal"
+
+                android:layout_below="@id/category_box"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/constituency_text_box"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="20dp"
+                android:paddingLeft="4dp"
+
+                android:orientation="vertical"
+
+                android:layout_below="@id/constituency_list_box"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                >
+
+
+
+
+
+
+            </LinearLayout>
+
+            <TextView
+
+                android:id="@+id/description_label"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/title_input"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+
+                android:layout_marginTop="20dp"
+                android:paddingLeft="4dp"
+
+                android:text="Description"
+
+                android:textColor="#000000"
+                android:textSize="16sp" />
+            <Button
+                android:id="@+id/register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_below="@id/category_box"
+                android:layout_centerHorizontal="true"
+
+                android:backgroundTint="#C63339"
+
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:layout_marginTop="16dp"
+
+                android:text="Register"
+                android:textSize="20sp"
+                android:textColor="#FFFFFF"
+
+                />
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

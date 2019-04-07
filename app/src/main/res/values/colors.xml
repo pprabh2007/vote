@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#460D0D</color>
+    <color name="colorPrimaryDark">#070000</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="vote_color">#C63339</color>
+    <color name="complaint_background">#630A0C</color>
+</resources>
