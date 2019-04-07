@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import util.User;
 
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button login_button;
     private EditText username_edittext;
+    private EditText password_edittext;
     Databasehelper DBHelper;
 
     @Override
@@ -24,35 +26,53 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        username_edittext=(EditText)findViewById(R.id.input_username);
+        password_edittext=(EditText)findViewById(R.id.input_password);
 
         DBHelper=new Databasehelper(this);
         DBHelper.getWritableDatabase();
 
-        Log.e("TEST", ""+DBHelper.checkIfPresent("abc@1233.com"));
-
-        DBHelper.addUser(new User());
-        User u2=new User();
-        u2.setConstituency("ANC");
-        DBHelper.addUser(u2);
-        DBHelper.close();
+        //DBHelper.getCategoryOf("a@1.com", "acde");
 
         login_button=(Button)findViewById(R.id.login);
         login_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(username_edittext.getText().toString().equals("rep@123.com"))
+                String username=username_edittext.getText().toString();
+                String password=password_edittext.getText().toString();
+                String category=DBHelper.getCategoryOf(username, password);
+                if(category.equals("R"))
                 {
+                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     Intent intent =new Intent(MainActivity.this, RepresentativePortal.class);
                     startActivity(intent);
                 }
-                else {
-                Intent intent =new Intent(MainActivity.this, HomeActivity.class);
+                else if(category.equals("V")){
+                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    Intent intent =new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intent);}
+                else if(category.equals("C"))
+                {
+                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    Intent intent =new Intent(MainActivity.this, HomeActivity.class);
+                    startActivity(intent);
+                }
+                else if(category.equals("NA"))
+                {
+                    Toast.makeText(MainActivity.this, "Wrong Credentials! Login Failed!", Toast.LENGTH_SHORT).show();
+                    username_edittext.getText().clear();
+                    password_edittext.getText().clear();
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "Wrong Credentials! Login Failed!", Toast.LENGTH_SHORT).show();
+                    username_edittext.getText().clear();
+                    password_edittext.getText().clear();
+                }
             }
-        });
+            });
 
-        username_edittext=(EditText)findViewById(R.id.input_username);
 
 
 

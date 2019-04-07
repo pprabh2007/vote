@@ -64,6 +64,20 @@ public class Databasehelper extends SQLiteOpenHelper {
         return cur.getCount()>0;
     }
 
+    public String getCategoryOf(String email, String password)
+    {
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cur=db.rawQuery("SELECT * FROM "+CONSTANTS.REGISTRATION_TABLE+" WHERE "+CONSTANTS.USER_NAME+"=?"+" AND "+CONSTANTS.PASSWORD+"=?", new String[]{email, password});
+
+        String category="NA";
+        if(cur.moveToFirst() && cur.getCount()>0)
+        {
+            category=cur.getString(5);
+        }
+        //Log.e("LOG", category);
+        return category;
+    }
+
     public List<String> getAllConstituencies()
     {
         SQLiteDatabase db=this.getReadableDatabase();
