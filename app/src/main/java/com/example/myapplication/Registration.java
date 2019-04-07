@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import java.util.Calendar;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
@@ -388,6 +389,19 @@ public class Registration extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        constituencySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long l) {
+                newUser.setConstituency(parent.getItemAtPosition(position).toString());
+                Log.e("CONS", newUser.getConstituency());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
             }
         });
