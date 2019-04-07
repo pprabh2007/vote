@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import util.Complaint;
 import util.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         DBHelper=new Databasehelper(this);
         DBHelper.getWritableDatabase();
 
+        DBHelper.addComplaint(new Complaint("ABC", "DEF", "GHI", "JKL"));
         //DBHelper.getCategoryOf("a@1.com", "acde");
 
         login_button=(Button)findViewById(R.id.login);

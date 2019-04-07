@@ -1,33 +1,69 @@
 package util;
 
 
+import android.util.Log;
+
+import com.example.myapplication.Databasehelper;
+
+import java.util.Calendar;
+
 public class Complaint {
 
     private String ID;
     private String title;
+    private String description;
     private String domain;
     private int day;
     private int month;
     private int year;
-    private String description;
+    private String user_name_launcher;
+    private int upvotes;
     private int status_stage;
     private String status_description;
-    private int upvotes;
+    private String contractor;
 
 
-    public Complaint(String ID, String title, String domain, int day, int month, int year, String description) {
-        this.ID=ID;
-        this.title = title;
-        this.domain = domain;
-        this.day = day;
-        this.month = month;
-        this.year = year;
-        this.description = description;
-        this.status_stage=0;
-        this.status_description="Launched";
-        this.upvotes=(int)(Math.random()*10);
+
+    public Complaint()
+    {
+
     }
 
+    public Complaint(String title, String description, String domain, String user_name_launcher)
+    {
+        this.title=title;
+        this.domain=domain;
+        this.description=description;
+        this.status_stage=0;
+        this.status_description="Launched";
+        this.contractor="None";
+        this.upvotes=0;
+        this.user_name_launcher=user_name_launcher;
+
+        Calendar now = Calendar.getInstance();   // Gets the current date and time
+        this.year = now.get(Calendar.YEAR);
+        this.month=now.get(Calendar.MONTH) +1;
+        this.day=now.get(Calendar.DAY_OF_MONTH);
+
+        Log.e("TAG", this.day+" "+this.month+" "+this.year);
+
+        this.ID="CM"+(long)(Math.random()*1000000);
+
+
+
+
+    }
+
+    public String getConstituency() {
+        return constituency;
+    }
+
+    public void setConstituency(String constituency) {
+        this.constituency = constituency;
+    }
+
+    private String constituency;
+    private int best_bid;
 
     public String getID() {
         return ID;
@@ -109,6 +145,27 @@ public class Complaint {
         this.upvotes = upvotes;
     }
 
+    public String getContractor() {
+        return contractor;
+    }
+
+    public void setContractor(String contractor) {
+        this.contractor = contractor;
+    }
+
+    public int getBest_bid() {
+        return best_bid;
+    }
+
+    public void setBest_bid(int best_bid) {
+        this.best_bid = best_bid;
+    }
+
+
+
+
+
+
     public String getDate()
     {
         String day_string=this.day<10?"0"+this.day:""+this.day;
@@ -118,5 +175,12 @@ public class Complaint {
         return (day_string+"/"+month_string+"/"+year_string);
     }
 
+    public String getUser_name_launcher() {
+        return user_name_launcher;
+    }
+
+    public void setUser_name_launcher(String user_name_launcher) {
+        this.user_name_launcher = user_name_launcher;
+    }
 
 }
