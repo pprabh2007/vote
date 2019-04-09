@@ -102,7 +102,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         return cons_list;
     }
 
-    public List<User> getVoters(String constituency, String category_code)
+    public List<User> getUsers(String constituency, String category_code)
     {
         SQLiteDatabase db=this.getReadableDatabase();
         Cursor cur=db.rawQuery("SELECT * FROM "+CONSTANTS.REGISTRATION_TABLE+" WHERE "+CONSTANTS.CONSTITUENCY+"=?"+" AND "+CONSTANTS.CATEGORY+"=?", new String[]{constituency, category_code});
@@ -118,8 +118,10 @@ public class Databasehelper extends SQLiteOpenHelper {
                 iter.setUser_name(cur.getString(1));
                 iter.setVoterID(cur.getString(9));
 
+                user_list.add(iter);
             }while (cur.moveToNext());
         }
+
 
         return user_list;
 

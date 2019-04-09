@@ -31,10 +31,13 @@ public class MainActivity extends AppCompatActivity {
         password_edittext=(EditText)findViewById(R.id.input_password);
 
         DBHelper=new Databasehelper(this);
-        DBHelper.getWritableDatabase();
 
-        //DBHelper.addComplaint(new Complaint("ABC", "DEF", "GHI", "JKL"));
-        //DBHelper.getCategoryOf("a@1.com", "acde");
+        Log.e("A", "IS");
+
+        for (User a: DBHelper.getUsers("sad", "R"))
+        {
+            Log.e("A", "IS"+a.getUser_name());
+        }
 
         login_button=(Button)findViewById(R.id.login);
         login_button.setOnClickListener(new View.OnClickListener() {
@@ -48,16 +51,19 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     Intent intent =new Intent(MainActivity.this, RepresentativePortal.class);
+                    intent.putExtra("THIS_USER_OBJECT", DBHelper.getDetails(username));
                     startActivity(intent);
                 }
                 else if(category.equals("V")){
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     Intent intent =new Intent(MainActivity.this, HomeActivity.class);
-                startActivity(intent);}
+                    intent.putExtra("THIS_USER_OBJECT", DBHelper.getDetails(username));
+                    startActivity(intent);}
                 else if(category.equals("C"))
                 {
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    Intent intent =new Intent(MainActivity.this, HomeActivity.class);
+                    Intent intent =new Intent(MainActivity.this, ContractorPortal.class);
+                    intent.putExtra("THIS_USER_OBJECT", DBHelper.getDetails(username));
                     startActivity(intent);
                 }
                 else if(category.equals("NA"))

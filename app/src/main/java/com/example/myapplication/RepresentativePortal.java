@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import android.app.Instrumentation;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,9 +19,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import util.User;
+
 public class RepresentativePortal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public final int REQUEST_CODE=1;
+
+    User THIS_USER_OBJECT;
+    Bundle extras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,14 +35,22 @@ public class RepresentativePortal extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        extras = getIntent().getExtras();
+
+        if(extras!=null) {
+            THIS_USER_OBJECT=(User)(extras.getSerializable("THIS_USER_OBJECT"));
+        }
+
+        else if(savedInstanceState!=null)
+        {
+            THIS_USER_OBJECT=(User)(savedInstanceState.getSerializable("THIS_USER_OBJECT"));
+        }
+        else
+        {
+            //Do Nothing
+        }
+
+       // Log.e("OBJECT", THIS_USER_OBJECT.getUser_name());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -93,18 +110,24 @@ public class RepresentativePortal extends AppCompatActivity
             Intent intent=new Intent(RepresentativePortal.this , FundsActivity.class);
             startActivity(intent);
 
-
         } else if (id == R.id.rep_contractor_list) {
             Context context = getApplicationContext();
-            CharSequence text = "No Contractor Found";
-            int duration = Toast.LENGTH_SHORT;
 
-            Toast toast = Toast.makeText(context, text, duration);
-            toast.show();
-
-        } else if (id == R.id.rep_voter_list) {
             Intent intent=new Intent(RepresentativePortal.this, ViewUserActivity.class);
+            intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
+            intent.putExtra("category_to_get", "C");
+            startActivityForResult(intent, REQUEST_CODE);
+
+        }
+        else if(id==R.id.rep_broadcastnews_nav_bar){
+            Intent intent=new Intent(RepresentativePortal.this , PublishNews.class);
             startActivity(intent);
+
+        }else if (id == R.id.rep_voter_list) {
+            Intent intent=new Intent(RepresentativePortal.this, ViewUserActivity.class);
+            intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
+            intent.putExtra("category_to_get", "V");
+            startActivityForResult(intent, REQUEST_CODE);
 
         } else if (id == R.id.rep_logout_nav_bar) {
             Context context = getApplicationContext();
@@ -113,14 +136,38 @@ public class RepresentativePortal extends AppCompatActivity
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
-            Intent intent=new Intent(RepresentativePortal.this , MainActivity.class);
-            startActivity(intent);
+            finish();
 
 
         }
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==REQUEST_CODE)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                THIS_USER_OBJECT=(User)data.getExtras().getSerializable("THIS_USER_OBJECT");
+            }
+        }
+        Log.e("OBJECT", THIS_USER_OBJECT.getUser_name());
+        Log.e("OBJECT", "dfnj");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+
+
+        savedInstanceState.putSerializable("THIS_USER_OBJECT", THIS_USER_OBJECT);
+        super.onSaveInstanceState(savedInstanceState);
     }
 }

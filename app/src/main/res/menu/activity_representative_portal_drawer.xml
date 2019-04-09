@@ -13,6 +13,11 @@
             android:icon="@drawable/ic_places_colosseum"
             android:title="View Complaints" />
         <item
+            android:id="@+id/rep_broadcastnews_nav_bar"
+            android:icon="@drawable/ic_iconmonstr_newspaper_13"
+            android:title="Broadcast News" />
+
+        <item
 
             android:id="@+id/rep_funds_nav_bar"
             android:icon="@drawable/ic_banking_spendings_1"

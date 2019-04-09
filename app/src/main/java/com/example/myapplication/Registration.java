@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import java.util.Calendar;
+import java.util.List;
 
 import android.util.Log;
 import android.view.View;
@@ -86,14 +87,25 @@ public class Registration extends AppCompatActivity {
                 temp_layout_2=(LinearLayout)findViewById(R.id.constituency_verified);
                 if(!newUser.getConstituency().equals(""))
                 {
-                    temp_layout_2.setVisibility(View.VISIBLE);
-                    temp_layout_1.setVisibility(View.GONE);
+                    List<String> AllConstituencies=DBHelper.getAllConstituencies();
+
+                    if(AllConstituencies.contains(newUser.getConstituency())) {
+
+                        temp_layout_1.setVisibility(View.VISIBLE);
+                        temp_layout_2.setVisibility(View.GONE);
+
+                    }
+                    else
+                    {
+                        temp_layout_1.setVisibility(View.GONE);
+                        temp_layout_2.setVisibility(View.VISIBLE);
+                    }
 
                 }
                 else
                 {
-                    temp_layout_2.setVisibility(View.GONE);
                     temp_layout_1.setVisibility(View.VISIBLE);
+                    temp_layout_2.setVisibility(View.GONE);
                 }
 
             }
@@ -408,12 +420,11 @@ public class Registration extends AppCompatActivity {
 
         registrationButton = (Button) findViewById(R.id.register);
 
-        /*
+
         registrationButton.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v)
             {
-                dummy.requestFocus();
                 Context context = getApplicationContext();
                 CharSequence text = "Successfully registered";
 
@@ -425,8 +436,8 @@ public class Registration extends AppCompatActivity {
                 toast.show();
                 finish();
             }
-        });*/
-
+        });
+        /*
         registrationButton.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean hasFocus) {
@@ -445,7 +456,7 @@ public class Registration extends AppCompatActivity {
                 }
             }
         });
-
+           */
     }
 
 

@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class ContractorPortal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,8 +30,8 @@ public class ContractorPortal extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent=new Intent(ContractorPortal.this , ViewNewsActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -91,6 +94,14 @@ public class ContractorPortal extends AppCompatActivity
         } else if (id == R.id.con_jobs_completed) {
 
         } else if (id == R.id.con_logout_nav_bar) {
+            Context context = getApplicationContext();
+            CharSequence text = "Logged out";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            Intent intent=new Intent(ContractorPortal.this , MainActivity.class);
+            startActivity(intent);
 
         }
 
