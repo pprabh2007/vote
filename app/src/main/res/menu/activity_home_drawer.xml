@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_home1"
             android:title="Home" />
         <item
+            android:id="@+id/home_lodge_complaint"
+            android:icon="@drawable/ic_add_circle_1"
+            android:title="Lodge New Issue" />
+        <item
             android:id="@+id/view_complaints_nav_bar"
             android:icon="@drawable/ic_places_colosseum"
             android:title="View Complaints" />

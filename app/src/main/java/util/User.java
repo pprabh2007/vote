@@ -145,7 +145,14 @@ public class User {
         return constituency;
     }
 
+    public String getDate()
+    {
+        String day_string=this.b_day<10?"0"+this.b_day:""+this.b_day;
+        String month_string=this.b_month<10?"0"+this.b_month:""+this.b_month;
+        String year_string=""+this.b_year;
 
+        return (day_string+"/"+month_string+"/"+year_string);
+    }
 
 
 }

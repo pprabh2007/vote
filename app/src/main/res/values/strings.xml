@@ -8,6 +8,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_representative_portal">RepresentativePortal</string>
+    <string name="title_activity_representative_portal">Representative Portal</string>
+    <string name="title_activity_contractor_portal">Contractor Portal</string>
+    <string name="title_activity_view_profile">View Profile</string>
     <string name="header">VOTE</string>
 </resources>

@@ -86,7 +86,14 @@ public class HomeActivity extends AppCompatActivity
 
         if (id == R.id.home_nav_bar) {
             // Handle the camera action
-        } else if (id == R.id.view_complaints_nav_bar) {
+        }
+        else if(id==R.id.home_lodge_complaint)
+        {
+            Intent intent=new Intent(HomeActivity.this , LaunchComplaintActivity.class);
+            startActivity(intent);
+
+        }
+        else if (id == R.id.view_complaints_nav_bar) {
 
             Intent intent=new Intent(HomeActivity.this , ViewComplaintActivity.class);
             startActivity(intent);

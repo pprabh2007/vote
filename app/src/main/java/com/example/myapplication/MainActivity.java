@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         DBHelper=new Databasehelper(this);
         DBHelper.getWritableDatabase();
 
-        DBHelper.addComplaint(new Complaint("ABC", "DEF", "GHI", "JKL"));
+        //DBHelper.addComplaint(new Complaint("ABC", "DEF", "GHI", "JKL"));
         //DBHelper.getCategoryOf("a@1.com", "acde");
 
         login_button=(Button)findViewById(R.id.login);

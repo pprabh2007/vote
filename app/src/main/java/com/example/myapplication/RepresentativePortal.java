@@ -103,6 +103,8 @@ public class RepresentativePortal extends AppCompatActivity
             toast.show();
 
         } else if (id == R.id.rep_voter_list) {
+            Intent intent=new Intent(RepresentativePortal.this, ViewUserActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.rep_logout_nav_bar) {
             Context context = getApplicationContext();

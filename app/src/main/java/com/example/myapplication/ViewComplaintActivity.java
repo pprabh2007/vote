@@ -20,7 +20,7 @@ public class ViewComplaintActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_complaint);
-        Databasehelper DBHelper = new Databasehelper(this);
+               Databasehelper DBHelper = new Databasehelper(this);
 
         recyclerView=(RecyclerView)findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);

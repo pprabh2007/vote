@@ -5,14 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ViewComplaintActivity"
 
-    android:background="#FFFFFF"
+    android:background="#D3D3D3"
 
     android:id="@+id/recyclerview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
 
-    android:backgroundTint="@color/complaint_background"
+    android:backgroundTint="#D3D3D3"
 
     >
 

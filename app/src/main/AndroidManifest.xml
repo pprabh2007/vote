@@ -10,17 +10,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".RepresentativePortal"
-            android:label="@string/title_activity_representative_portal"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".FundsActivity"
-            android:label="Funds &amp; Grants"
-            android:parentActivityName=".HomeActivity">
+
+            android:name=".ViewUserActivity"
+            android:label="Voters List"
+            android:parentActivityName=".RepresentativePortal">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.myapplication.HomeActivity" />
+                android:value="com.example.myapplication.RepresentativePortal" />
+
         </activity>
+        <activity android:name=".MyProfile" />
+        <activity
+            android:name=".ContractorPortal"
+            android:label="@string/title_activity_contractor_portal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RepresentativePortal"
+            android:label="@string/title_activity_representative_portal"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+        android:name=".FundsActivity"
+        android:label="Funds &amp; Grants"
+        android:parentActivityName=".HomeActivity">
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.example.myapplication.HomeActivity" />
+        </activity>
+
         <activity
             android:name=".HomeActivity"
             android:label="@string/header"
@@ -43,6 +59,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.myapplication.MainActivity" />
         </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
