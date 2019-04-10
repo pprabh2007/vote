@@ -8,10 +8,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import util.CONSTANTS;
 import util.Complaint;
+import util.News;
 import util.User;
 
 
@@ -27,7 +29,10 @@ public class Databasehelper extends SQLiteOpenHelper {
         //String command="CREATE TABLE "+CONSTANTS.REGISTRATION_TABLE+"("+CONSTANTS.USER_NAME+" TEXT)";
         db.execSQL(command);
 
-        command="CREATE TABLE "+CONSTANTS.COMPLAINT_TABLE+"("+CONSTANTS.ID+" TEXT PRIMARY KEY,"+CONSTANTS.TITLE+" TEXT,"+CONSTANTS.DESCRIPTION+" TEXT,"+CONSTANTS.DOMAIN+" TEXT,"+CONSTANTS.LAUNCHER+" TEXT,"+CONSTANTS.LAUNCH_D+" INTEGER,"+CONSTANTS.LAUNCH_M+" INTEGER,"+CONSTANTS.LAUNCH_Y+" INTEGER,"+CONSTANTS.STATUS_NO+" INTEGER,"+CONSTANTS.STATUS_DESC+" TEXT,"+CONSTANTS.CONTRACTOR+" TEXT,"+CONSTANTS.CONSTITUENCY+" TEXT,"+CONSTANTS.UPVOTES+" INTEGER"+")";
+        command="CREATE TABLE "+CONSTANTS.COMPLAINT_TABLE+"("+CONSTANTS.ID+" TEXT PRIMARY KEY,"+CONSTANTS.TITLE+" TEXT,"+CONSTANTS.DESCRIPTION+" TEXT,"+CONSTANTS.DOMAIN+" TEXT,"+CONSTANTS.LAUNCHER+" TEXT,"+CONSTANTS.LAUNCH_D+" INTEGER,"+CONSTANTS.LAUNCH_M+" INTEGER,"+CONSTANTS.LAUNCH_Y+" INTEGER,"+CONSTANTS.BID_AMT+" INTEGER,"+CONSTANTS.STATUS_DESC+" TEXT,"+CONSTANTS.CONTRACTOR+" TEXT,"+CONSTANTS.CONSTITUENCY+" TEXT,"+CONSTANTS.UPVOTES+" INTEGER"+")";
+        db.execSQL(command);
+
+        command="CREATE TABLE "+CONSTANTS.NEWS_TABLE+"("+CONSTANTS.NEWS_TITLE+" TEXT,"+CONSTANTS.NEWS_DESCRIPTION+" TEXT,"+CONSTANTS.NEWS_PUBLISHER+" TEXT,"+CONSTANTS.CONSTITUENCY+" TEXT,"+CONSTANTS.NEWS_DAY+" INTEGER,"+CONSTANTS.NEWS_MONTH+" INTEGER,"+CONSTANTS.NEWS_YEAR+" INTEGER"+")";
         db.execSQL(command);
 
     }
@@ -163,7 +168,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         con.put(CONSTANTS.LAUNCH_D, complaint.getDay());
         con.put(CONSTANTS.LAUNCH_M, complaint.getMonth());
         con.put(CONSTANTS.LAUNCH_Y, complaint.getYear());
-        con.put(CONSTANTS.STATUS_NO, complaint.getStatus_stage());
+        con.put(CONSTANTS.BID_AMT, complaint.getBid_amt());
         con.put(CONSTANTS.STATUS_DESC, complaint.getStatus_description());
         con.put(CONSTANTS.CONTRACTOR, complaint.getContractor());
         con.put(CONSTANTS.CONSTITUENCY, complaint.getConstituency());
@@ -173,12 +178,12 @@ public class Databasehelper extends SQLiteOpenHelper {
 
     }
 
-    public List<Complaint> getAllComplaints()
+    public List<Complaint> getAllComplaints(String constituency)
     {
         SQLiteDatabase db=this.getReadableDatabase();
 
-        String command="SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE;
-        Cursor cur=db.rawQuery(command, null);
+        String command="SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.CONSTITUENCY+"=?";
+        Cursor cur=db.rawQuery(command, new String[]{constituency});
 
         List<Complaint> com_list=new ArrayList<Complaint>();
 
@@ -195,7 +200,7 @@ public class Databasehelper extends SQLiteOpenHelper {
                 iter.setDay(cur.getInt(5));
                 iter.setMonth(cur.getInt(6));
                 iter.setYear(cur.getInt(7));
-                iter.setStatus_stage(cur.getInt(8));
+                iter.setBid_amt(cur.getInt(8));
                 iter.setStatus_description(cur.getString(9));
                 iter.setContractor(cur.getString(10));
                 iter.setConstituency(cur.getString(11));
@@ -210,5 +215,73 @@ public class Databasehelper extends SQLiteOpenHelper {
         return com_list;
 
     }
+
+    public HashMap<String, String> getStatus(String ID)
+    {
+        HashMap<String, String> status_map=new HashMap<String, String>();
+
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.ID+"=?", new String[]{ID});
+        if(cur.moveToFirst())
+        {
+            String Date=CONSTANTS.getDate(cur.getInt(5), cur.getInt(6), cur.getInt(7));
+            String Status=cur.getString(9);
+            String Contra=cur.getString(10);
+
+            status_map.put("DATE", Date);
+            status_map.put("STATUS", Status);
+            status_map.put("CONTRACTOR", Contra);
+
+        }
+
+
+        return status_map;
+
+    }
+
+    public void addNews(News newNews)
+    {
+        SQLiteDatabase db=this.getReadableDatabase();
+
+        ContentValues con=new ContentValues();
+        con.put(CONSTANTS.NEWS_TITLE, newNews.getTitle());
+        con.put(CONSTANTS.NEWS_DESCRIPTION, newNews.getDescription());
+        con.put(CONSTANTS.NEWS_PUBLISHER, newNews.getPublisher());
+        con.put(CONSTANTS.CONSTITUENCY, newNews.getConstituency());
+        con.put(CONSTANTS.NEWS_DAY, newNews.getDay());
+        con.put(CONSTANTS.NEWS_MONTH, newNews.getMonth());
+        con.put(CONSTANTS.NEWS_YEAR, newNews.getYear());
+
+        db.insert(CONSTANTS.NEWS_TABLE, null, con);
+    }
+
+    public List<News> getNews(String constituency)
+    {
+        List<News> news_list=new ArrayList<>();
+
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cur=db.rawQuery("SELECT * FROM "+ CONSTANTS.NEWS_TABLE+" WHERE "+CONSTANTS.CONSTITUENCY+"=?", new String[]{constituency});
+        if(cur.moveToFirst())
+        {
+            do {
+                News iter = new News();
+                iter.setTitle(cur.getString(0));
+                iter.setDescription(cur.getString(1));
+                iter.setPublisher(cur.getString(2));
+                iter.setConstituency(cur.getString(3));
+                iter.setDay(cur.getInt(4));
+                iter.setMonth(cur.getInt(5));
+                iter.setYear(cur.getInt(6));
+
+                news_list.add(iter);
+
+            }while(cur.moveToNext());
+        }
+
+        return news_list;
+
+    }
+
+
 
 }

@@ -889,8 +889,6 @@
 
             <Button
 
-                android:enabled="false"
-
                 android:focusableInTouchMode="true"
                 android:focusable="true"
 

@@ -18,14 +18,27 @@ public class Complaint {
     private int year;
     private String user_name_launcher;
     private int upvotes;
-    private int status_stage;
+    private int bid_amt;
     private String status_description;
     private String contractor;
+    private String constituency;
+    private int best_bid;
 
 
 
     public Complaint()
     {
+
+        this.bid_amt=-1;
+        this.status_description="Launched";
+        this.contractor="None";
+        this.upvotes=0;
+        Calendar now = Calendar.getInstance();   // Gets the current date and time
+        this.year = now.get(Calendar.YEAR);
+        this.month=now.get(Calendar.MONTH) +1;
+        this.day=now.get(Calendar.DAY_OF_MONTH);
+        this.ID="CM"+(long)(Math.random()*1000000);
+
 
     }
 
@@ -34,7 +47,7 @@ public class Complaint {
         this.title=title;
         this.domain=domain;
         this.description=description;
-        this.status_stage=0;
+        this.bid_amt=-1;
         this.status_description="Launched";
         this.contractor="None";
         this.upvotes=0;
@@ -45,7 +58,6 @@ public class Complaint {
         this.month=now.get(Calendar.MONTH) +1;
         this.day=now.get(Calendar.DAY_OF_MONTH);
 
-        Log.e("TAG", this.day+" "+this.month+" "+this.year);
 
         this.ID="CM"+(long)(Math.random()*1000000);
 
@@ -62,8 +74,7 @@ public class Complaint {
         this.constituency = constituency;
     }
 
-    private String constituency;
-    private int best_bid;
+
 
     public String getID() {
         return ID;
@@ -121,12 +132,12 @@ public class Complaint {
         this.description = description;
     }
 
-    public int getStatus_stage() {
-        return status_stage;
+    public int getBid_amt() {
+        return bid_amt;
     }
 
-    public void setStatus_stage(int status_stage) {
-        this.status_stage = status_stage;
+    public void setBid_amt(int bid_amt) {
+        this.bid_amt = bid_amt;
     }
 
     public String getStatus_description() {

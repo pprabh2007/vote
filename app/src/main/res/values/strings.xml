@@ -12,4 +12,6 @@
     <string name="title_activity_contractor_portal">Contractor Portal</string>
     <string name="title_activity_view_profile">View Profile</string>
     <string name="header">VOTE</string>
+    <string name="button1">Okay</string>
+    <string name="button2">Take Screenshot</string>
 </resources>

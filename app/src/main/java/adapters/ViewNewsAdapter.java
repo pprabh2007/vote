@@ -2,9 +2,12 @@ package adapters;
 
 
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.myapplication.NewsDetailsActivity;
 import com.example.myapplication.R;
+import com.example.myapplication.ViewNewsActivity;
 
 import java.util.List;
 
@@ -23,6 +27,7 @@ public class ViewNewsAdapter extends RecyclerView.Adapter<ViewNewsAdapter.ViewHo
 
     private Context context;
     private List<News> newsList;
+    Dialog alert;
 
 
     public ViewNewsAdapter(Context context, List<News> newsList) {
@@ -42,8 +47,8 @@ public class ViewNewsAdapter extends RecyclerView.Adapter<ViewNewsAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 
         News current = newsList.get(i);
-        viewHolder.comp_title.setText("TITLE: " + current.gettitle());
-        viewHolder.comp_date.setText("Date: " + current.getDescription());
+        viewHolder.comp_title.setText("TITLE: " + current.getTitle());
+        viewHolder.comp_date.setText("Date: " + current.getDate());
     }
 
     @Override
@@ -69,11 +74,27 @@ public class ViewNewsAdapter extends RecyclerView.Adapter<ViewNewsAdapter.ViewHo
         public void onClick(View v) {
 
             int position = getAdapterPosition();
-            Intent intent = new Intent(context, NewsDetailsActivity.class);
-            intent.putExtra("title", newsList.get(position).gettitle());
+
+            final AlertDialog.Builder alert_builder=new AlertDialog.Builder(context);
+            alert_builder.setTitle(newsList.get(position).getTitle());
+            alert_builder.setMessage(newsList.get(position).getDescription());
+            alert_builder.setPositiveButton(R.string.button1,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                            alert.cancel();
+                        }
+                    });
+
+            alert=alert_builder.create();
+            alert.show();
+
+            /*Intent intent = new Intent(context, NewsDetailsActivity.class);
+            intent.putExtra("title", newsList.get(position).getTitle());
             intent.putExtra("description", newsList.get(position).getDescription());
             intent.putExtra("date", newsList.get(position).getDate());
-            context.startActivity(intent);
+            context.startActivity(intent);*/
 
         }
 

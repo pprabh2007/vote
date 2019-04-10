@@ -103,8 +103,9 @@ public class RepresentativePortal extends AppCompatActivity
         if (id == R.id.rep_home_nav_bar) {
             // Handle the camera action
         } else if (id == R.id.rep_view_complaints_nav_bar) {
-            Intent intent=new Intent(RepresentativePortal.this , ViewComplaintActivity.class);
-            startActivity(intent);
+            Intent intent=new Intent(RepresentativePortal.this, ViewComplaintActivity.class);
+            intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
+            startActivityForResult(intent, REQUEST_CODE);
 
         } else if (id == R.id.rep_funds_nav_bar) {
             Intent intent=new Intent(RepresentativePortal.this , FundsActivity.class);
@@ -120,8 +121,10 @@ public class RepresentativePortal extends AppCompatActivity
 
         }
         else if(id==R.id.rep_broadcastnews_nav_bar){
-            Intent intent=new Intent(RepresentativePortal.this , PublishNews.class);
-            startActivity(intent);
+            Intent intent=new Intent(RepresentativePortal.this, PublishNews.class);
+            intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
+            intent.putExtra("category_to_get", "C");
+            startActivityForResult(intent, REQUEST_CODE);
 
         }else if (id == R.id.rep_voter_list) {
             Intent intent=new Intent(RepresentativePortal.this, ViewUserActivity.class);

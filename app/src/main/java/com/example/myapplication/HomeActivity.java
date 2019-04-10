@@ -3,8 +3,10 @@ package com.example.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,10 +18,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import util.User;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    public final int REQUEST_CODE=1;
+    User THIS_USER_OBJECT;
+    Bundle extras;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +37,27 @@ public class HomeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(HomeActivity.this , ViewNewsActivity.class);
-                startActivity(intent);
+                Intent intent=new Intent(HomeActivity.this, ViewNewsActivity.class);
+                intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         });
+
+        extras = getIntent().getExtras();
+
+        if(extras!=null) {
+            THIS_USER_OBJECT=(User)(extras.getSerializable("THIS_USER_OBJECT"));
+        }
+
+        else if(savedInstanceState!=null)
+        {
+            THIS_USER_OBJECT=(User)(savedInstanceState.getSerializable("THIS_USER_OBJECT"));
+        }
+        else
+        {
+            //Do Nothing
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -89,14 +112,16 @@ public class HomeActivity extends AppCompatActivity
         }
         else if(id==R.id.home_lodge_complaint)
         {
-            Intent intent=new Intent(HomeActivity.this , LaunchComplaintActivity.class);
-            startActivity(intent);
+            Intent intent=new Intent(HomeActivity.this, LaunchComplaintActivity.class);
+            intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
+            startActivityForResult(intent, REQUEST_CODE);
 
         }
         else if (id == R.id.view_complaints_nav_bar) {
 
-            Intent intent=new Intent(HomeActivity.this , ViewComplaintActivity.class);
-            startActivity(intent);
+            Intent intent=new Intent(HomeActivity.this, ViewComplaintActivity.class);
+            intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
+            startActivityForResult(intent, REQUEST_CODE);
 
         } else if (id == R.id.track_nav_bar) {
 
@@ -120,5 +145,30 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==REQUEST_CODE)
+        {
+            if(resultCode==RESULT_OK)
+            {
+                THIS_USER_OBJECT=(User)data.getExtras().getSerializable("THIS_USER_OBJECT");
+            }
+        }
+        Log.e("OBJECT", THIS_USER_OBJECT.getUser_name());
+        Log.e("OBJECT", "dfnj");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+
+
+        savedInstanceState.putSerializable("THIS_USER_OBJECT", THIS_USER_OBJECT);
+        super.onSaveInstanceState(savedInstanceState);
     }
 }
