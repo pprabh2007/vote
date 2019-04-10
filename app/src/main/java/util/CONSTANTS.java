@@ -1,5 +1,7 @@
 package util;
 
+import java.util.List;
+
 public class CONSTANTS
 {
     public static final String DATABASE_NAME="DATABASE.db";
@@ -45,6 +47,15 @@ public class CONSTANTS
     public static final String NEWS_YEAR="NEWS_YEAR";
     public static final String NEWS_PUBLISHER="NEWS_PUBLISHER";
     //public static final String CONSTITUENCY="CONSTITUENCY";
+
+
+    /*COMPLAINTS FILTERS*/
+    public static final int AVAILABLE_TO_BID= 1;
+    public static final int ASSIGNED=2;
+    public static final int COMPLETED=3;
+
+    public static final int BIDDED=4;
+    public static final int NON_BIDDED=5;
 
 
     public static final String getDate(int d, int m, int y)

@@ -44,6 +44,8 @@ public class Databasehelper extends SQLiteOpenHelper {
         db.execSQL(command);
         command="DROP TABLE IF EXISTS "+CONSTANTS.COMPLAINT_TABLE;
         db.execSQL(command);
+        command="DROP TABLE IF EXISTS "+CONSTANTS.NEWS_TABLE;
+        db.execSQL(command);
         onCreate(db);
     }
 
@@ -216,6 +218,44 @@ public class Databasehelper extends SQLiteOpenHelper {
 
     }
 
+    public Complaint getComplaint(String ID)
+    {
+        Complaint temp=new Complaint();
+
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.ID+"=?", new String[]{ID});
+
+        if(cur.getCount()>0)
+        {
+            if(cur.moveToFirst())
+            {
+                temp.setID(cur.getString(0));
+                temp.setTitle(cur.getString(1));
+                temp.setDescription(cur.getString(2));
+                temp.setDomain(cur.getString(3));
+                temp.setUser_name_launcher(cur.getString(4));
+                temp.setDay(cur.getInt(5));
+                temp.setMonth(cur.getInt(6));
+                temp.setYear(cur.getInt(7));
+                temp.setBid_amt(cur.getInt(8));
+                temp.setStatus_description(cur.getString(9));
+                temp.setContractor(cur.getString(10));
+                temp.setConstituency(cur.getString(11));
+                temp.setUpvotes(cur.getInt(12));
+
+                return temp;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        else
+        {
+            return null;
+        }
+    }
+
     public HashMap<String, String> getStatus(String ID)
     {
         HashMap<String, String> status_map=new HashMap<String, String>();
@@ -279,6 +319,67 @@ public class Databasehelper extends SQLiteOpenHelper {
         }
 
         return news_list;
+
+    }
+
+
+    public List<Complaint> filterComplaints(User THIS_USER_OBJECT, int REQUEST_CODE)
+    {
+        List<Complaint> filtered_complaints=new ArrayList<Complaint>();
+
+        SQLiteDatabase db=this.getReadableDatabase();
+        Cursor cur;
+        switch(REQUEST_CODE)
+        {
+            case 1:
+                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.STATUS_DESC+"=?", new String[]{"Launched"});
+                break;
+
+            case 2:
+                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.STATUS_DESC+"=?"+" AND "+CONSTANTS.CONTRACTOR+"=?", new String[]{"Assigned", THIS_USER_OBJECT.getUser_name()});
+                break;
+            case 3:
+                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.STATUS_DESC+"=?"+" AND "+CONSTANTS.CONTRACTOR+"=?", new String[]{"Completed", THIS_USER_OBJECT.getUser_name()});
+
+                break;
+            case 4:
+                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.STATUS_DESC+"=?"+" AND "+CONSTANTS.BID_AMT+"!=?", new String[]{"Launched", "-1"});
+                break;
+            case 5:
+                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.BID_AMT+"=?", new String[]{"-1"});
+                break;
+
+            default:
+                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE, null);
+                break;
+        }
+
+        if(cur.moveToFirst())
+        {
+            do
+            {
+                Complaint iter=new Complaint();
+                iter.setID(cur.getString(0));
+                iter.setTitle(cur.getString(1));
+                iter.setDescription(cur.getString(2));
+                iter.setDomain(cur.getString(3));
+                iter.setUser_name_launcher(cur.getString(4));
+                iter.setDay(cur.getInt(5));
+                iter.setMonth(cur.getInt(6));
+                iter.setYear(cur.getInt(7));
+                iter.setBid_amt(cur.getInt(8));
+                iter.setStatus_description(cur.getString(9));
+                iter.setContractor(cur.getString(10));
+                iter.setConstituency(cur.getString(11));
+                iter.setUpvotes(cur.getInt(12));
+
+                filtered_complaints.add(iter);
+
+
+            }while(cur.moveToNext());
+        }
+
+        return filtered_complaints;
 
     }
 
