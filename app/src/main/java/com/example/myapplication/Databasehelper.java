@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.sql.SQLInput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -29,7 +30,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         //String command="CREATE TABLE "+CONSTANTS.REGISTRATION_TABLE+"("+CONSTANTS.USER_NAME+" TEXT)";
         db.execSQL(command);
 
-        command="CREATE TABLE "+CONSTANTS.COMPLAINT_TABLE+"("+CONSTANTS.ID+" TEXT PRIMARY KEY,"+CONSTANTS.TITLE+" TEXT,"+CONSTANTS.DESCRIPTION+" TEXT,"+CONSTANTS.DOMAIN+" TEXT,"+CONSTANTS.LAUNCHER+" TEXT,"+CONSTANTS.LAUNCH_D+" INTEGER,"+CONSTANTS.LAUNCH_M+" INTEGER,"+CONSTANTS.LAUNCH_Y+" INTEGER,"+CONSTANTS.BID_AMT+" INTEGER,"+CONSTANTS.STATUS_DESC+" TEXT,"+CONSTANTS.CONTRACTOR+" TEXT,"+CONSTANTS.CONSTITUENCY+" TEXT,"+CONSTANTS.UPVOTES+" INTEGER"+")";
+        command="CREATE TABLE "+CONSTANTS.COMPLAINT_TABLE+"("+CONSTANTS.ID+" TEXT PRIMARY KEY,"+CONSTANTS.TITLE+" TEXT,"+CONSTANTS.DESCRIPTION+" TEXT,"+CONSTANTS.DOMAIN+" TEXT,"+CONSTANTS.LAUNCHER+" TEXT,"+CONSTANTS.LAUNCH_D+" INTEGER,"+CONSTANTS.LAUNCH_M+" INTEGER,"+CONSTANTS.LAUNCH_Y+" INTEGER,"+CONSTANTS.BID_AMT+" INTEGER,"+CONSTANTS.STATUS_DESC+" TEXT,"+CONSTANTS.CONTRACTOR+" TEXT,"+CONSTANTS.CONSTITUENCY+" TEXT,"+CONSTANTS.UPVOTES+" INTEGER,"+CONSTANTS.UPVOTES_STRING+" TEXT"+")";
         db.execSQL(command);
 
         command="CREATE TABLE "+CONSTANTS.NEWS_TABLE+"("+CONSTANTS.NEWS_TITLE+" TEXT,"+CONSTANTS.NEWS_DESCRIPTION+" TEXT,"+CONSTANTS.NEWS_PUBLISHER+" TEXT,"+CONSTANTS.CONSTITUENCY+" TEXT,"+CONSTANTS.NEWS_DAY+" INTEGER,"+CONSTANTS.NEWS_MONTH+" INTEGER,"+CONSTANTS.NEWS_YEAR+" INTEGER"+")";
@@ -380,6 +381,44 @@ public class Databasehelper extends SQLiteOpenHelper {
         }
 
         return filtered_complaints;
+
+    }
+
+    public void updateBid(Complaint THIS_COMPLAINT, User THIS_USER_OBJECT, int newBid)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+
+        if(newBid<THIS_COMPLAINT.getBid_amt() || THIS_COMPLAINT.getBid_amt()==-1)
+        {
+            THIS_COMPLAINT.setBid_amt(newBid);
+            THIS_COMPLAINT.setContractor(THIS_USER_OBJECT.getUser_name());
+
+            ContentValues con=new ContentValues();
+            con.put(CONSTANTS.BID_AMT, THIS_COMPLAINT.getBid_amt());
+            con.put(CONSTANTS.CONTRACTOR, THIS_COMPLAINT.getContractor());
+
+            db.update(CONSTANTS.COMPLAINT_TABLE, con, CONSTANTS.ID+"=?", new String[]{THIS_COMPLAINT.getID()});
+
+        }
+        else
+        {
+            //do nothing
+        }
+
+    }
+
+    public void upvoteIssue(Complaint THIS_COMPLAINT, User THIS_USER_OBJECT)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+
+        THIS_COMPLAINT.setUpvotes(THIS_COMPLAINT.getUpvotes()+1);
+        THIS_COMPLAINT.appendUpvote(THIS_USER_OBJECT.getUser_name());
+
+        ContentValues con=new ContentValues();
+        con.put(CONSTANTS.UPVOTES, THIS_COMPLAINT.getUpvotes());
+        con.put(CONSTANTS.UPVOTES_STRING, THIS_COMPLAINT.getUpvotes_string());
+
+        db.update(CONSTANTS.COMPLAINT_TABLE, con, CONSTANTS.ID+"=?", new String[]{THIS_COMPLAINT.getID()});
 
     }
 

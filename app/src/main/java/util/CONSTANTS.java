@@ -35,6 +35,7 @@ public class CONSTANTS
     public static final String STATUS_DESC="STATUS_DESC";
     public static final String CONTRACTOR="CONTRACTOR";
     public static final String UPVOTES="UPVOTES";
+    public static final String UPVOTES_STRING="UPVOTES_STRING";
     //public static final String CONSTITUENCY="CONSTITUENCY";
 
     /* TABLE 3 */

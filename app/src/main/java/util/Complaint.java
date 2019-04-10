@@ -22,7 +22,7 @@ public class Complaint {
     private String status_description;
     private String contractor;
     private String constituency;
-    private int best_bid;
+    private String upvotes_string;
 
 
 
@@ -38,6 +38,7 @@ public class Complaint {
         this.month=now.get(Calendar.MONTH) +1;
         this.day=now.get(Calendar.DAY_OF_MONTH);
         this.ID="CM"+(long)(Math.random()*1000000);
+        this.upvotes_string="";
 
 
     }
@@ -58,12 +59,25 @@ public class Complaint {
         this.month=now.get(Calendar.MONTH) +1;
         this.day=now.get(Calendar.DAY_OF_MONTH);
 
-
+        this.upvotes_string="";
         this.ID="CM"+(long)(Math.random()*1000000);
 
 
 
 
+    }
+
+    public String getUpvotes_string()
+    {
+        return upvotes_string;
+    }
+    public void setUpvotes_string(String upvotes_string)
+    {
+        this.upvotes_string=upvotes_string;
+    }
+    public void appendUpvote(String user)
+    {
+        this.upvotes_string=this.upvotes_string+" "+user;
     }
 
     public String getConstituency() {
@@ -164,13 +178,6 @@ public class Complaint {
         this.contractor = contractor;
     }
 
-    public int getBest_bid() {
-        return best_bid;
-    }
-
-    public void setBest_bid(int best_bid) {
-        this.best_bid = best_bid;
-    }
 
 
 
