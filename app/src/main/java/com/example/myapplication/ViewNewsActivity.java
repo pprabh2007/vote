@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import adapters.ViewNewsAdapter;
@@ -39,6 +40,7 @@ public class ViewNewsActivity extends AppCompatActivity {
 
 
         List<News> list=DBHelper.getNews(THIS_USER_OBJECT.getConstituency());
+        Collections.reverse(list);
 
         ViewNewsAdapter=new ViewNewsAdapter(this, list);
         recyclerView.setAdapter(ViewNewsAdapter);

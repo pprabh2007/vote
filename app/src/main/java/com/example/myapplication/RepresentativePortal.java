@@ -25,6 +25,7 @@ public class RepresentativePortal extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public final int REQUEST_CODE=1;
+    public static long back_pressed;
 
     User THIS_USER_OBJECT;
     Bundle extras;
@@ -62,6 +63,7 @@ public class RepresentativePortal extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    /*
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -71,6 +73,7 @@ public class RepresentativePortal extends AppCompatActivity
             super.onBackPressed();
         }
     }
+    */
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -87,7 +90,10 @@ public class RepresentativePortal extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_settings_representative) {
+            Intent intent=new Intent(RepresentativePortal.this, MyProfile.class);
+            intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
+            startActivityForResult(intent, REQUEST_CODE);
             return true;
         }
 
@@ -172,5 +178,16 @@ public class RepresentativePortal extends AppCompatActivity
 
         savedInstanceState.putSerializable("THIS_USER_OBJECT", THIS_USER_OBJECT);
         super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if (back_pressed + 2000 > System.currentTimeMillis()) {
+            startActivity(new Intent(RepresentativePortal.this, MainActivity.class));
+        }
+        else Toast.makeText(getBaseContext(), "Press once again to logout!", Toast.LENGTH_SHORT).show();
+        back_pressed = System.currentTimeMillis();
+
     }
 }

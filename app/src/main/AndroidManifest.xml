@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.myapplication">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -11,16 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PublishNews"
+        <activity android:name=".TrackComplaintActivity"></activity>
+        <activity
+            android:name=".PublishNews"
             android:label="Broadcast"
             android:parentActivityName=".RepresentativePortal">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.myapplication.RepresentativePortal" />
-
-            ></activity>
+            >
+        </activity>
         <activity android:name=".NewsDetailsActivity" />
-        <activity android:name=".ViewNewsActivity"
+        <activity
+            android:name=".ViewNewsActivity"
             android:label="News"
             android:parentActivityName=".HomeActivity">
             <meta-data
@@ -42,9 +45,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".RepresentativePortal"
-            android:label="@string/title_activity_representative_portal"
-            android:configChanges="orientation|screenSize|keyboardHidden"/>
-        android:theme="@style/AppTheme.NoActionBar" />
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/title_activity_representative_portal" />
         <activity
             android:name=".FundsActivity"
             android:label="Funds &amp; Grants"
@@ -57,7 +59,8 @@
             android:name=".HomeActivity"
             android:label="@string/header"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LaunchComplaintActivity"
+        <activity
+            android:name=".LaunchComplaintActivity"
             android:label="Lodge Complaint"
             android:parentActivityName=".HomeActivity">
             <meta-data

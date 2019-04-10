@@ -14,6 +14,7 @@ import util.User;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static long back_pressed;
     private static final String LOG_TAG =
             MainActivity.class.getSimpleName();
 
@@ -53,18 +54,21 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent =new Intent(MainActivity.this, RepresentativePortal.class);
                     intent.putExtra("THIS_USER_OBJECT", DBHelper.getDetails(username));
                     startActivity(intent);
+                    finish();
                 }
                 else if(category.equals("V")){
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     Intent intent =new Intent(MainActivity.this, HomeActivity.class);
                     intent.putExtra("THIS_USER_OBJECT", DBHelper.getDetails(username));
-                    startActivity(intent);}
+                    startActivity(intent);
+                    finish();}
                 else if(category.equals("C"))
                 {
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     Intent intent =new Intent(MainActivity.this, ContractorPortal.class);
                     intent.putExtra("THIS_USER_OBJECT", DBHelper.getDetails(username));
                     startActivity(intent);
+                    finish();
                 }
                 else if(category.equals("NA"))
                 {
@@ -91,5 +95,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Registration.class);
         startActivity(intent);
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if (back_pressed + 2000 > System.currentTimeMillis())
+        {
+            finishAffinity();
+            System.exit(0);
+        }
+        else Toast.makeText(getBaseContext(), "Press once again to exit!", Toast.LENGTH_SHORT).show();
+        back_pressed = System.currentTimeMillis();
     }
 }
