@@ -5,7 +5,7 @@ import java.util.List;
 public class CONSTANTS
 {
     public static final String DATABASE_NAME="DATABASE.db";
-    public static final int VERSION=7;
+    public static final int VERSION=8;
 
     /* TABLE 1*/
     public static final String REGISTRATION_TABLE="REGISTRATION_TABLE";
@@ -50,7 +50,7 @@ public class CONSTANTS
     //public static final String CONSTITUENCY="CONSTITUENCY";
 
 
-    /*COMPLAINTS FILTERS*/
+    /*COMPLAINTS FILTERS- REQUEST CODES*/
     public static final int AVAILABLE_TO_BID= 1;
     public static final int ASSIGNED=2;
     public static final int COMPLETED=3;

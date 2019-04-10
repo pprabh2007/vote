@@ -176,6 +176,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         con.put(CONSTANTS.CONTRACTOR, complaint.getContractor());
         con.put(CONSTANTS.CONSTITUENCY, complaint.getConstituency());
         con.put(CONSTANTS.UPVOTES, complaint.getUpvotes());
+        con.put(CONSTANTS.UPVOTES_STRING, complaint.getUpvotes_string());
 
         db.insert(CONSTANTS.COMPLAINT_TABLE, null, con);
 
@@ -208,6 +209,7 @@ public class Databasehelper extends SQLiteOpenHelper {
                 iter.setContractor(cur.getString(10));
                 iter.setConstituency(cur.getString(11));
                 iter.setUpvotes(cur.getInt(12));
+                iter.setUpvotes_string(cur.getString(13));
 
                 com_list.add(iter);
 
@@ -243,7 +245,7 @@ public class Databasehelper extends SQLiteOpenHelper {
                 temp.setContractor(cur.getString(10));
                 temp.setConstituency(cur.getString(11));
                 temp.setUpvotes(cur.getInt(12));
-
+                temp.setUpvotes_string(cur.getString(13));
                 return temp;
             }
             else
@@ -373,6 +375,7 @@ public class Databasehelper extends SQLiteOpenHelper {
                 iter.setContractor(cur.getString(10));
                 iter.setConstituency(cur.getString(11));
                 iter.setUpvotes(cur.getInt(12));
+                iter.setUpvotes_string(cur.getString(13));
 
                 filtered_complaints.add(iter);
 
