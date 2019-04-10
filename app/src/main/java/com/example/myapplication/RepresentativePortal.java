@@ -109,7 +109,7 @@ public class RepresentativePortal extends AppCompatActivity
         if (id == R.id.rep_home_nav_bar) {
             // Handle the camera action
         } else if (id == R.id.rep_view_complaints_nav_bar) {
-            Intent intent=new Intent(RepresentativePortal.this, ViewComplaintActivity.class);
+            Intent intent=new Intent(RepresentativePortal.this, RepresentativeViewComplaintActivity.class);
             intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
             startActivityForResult(intent, REQUEST_CODE);
 

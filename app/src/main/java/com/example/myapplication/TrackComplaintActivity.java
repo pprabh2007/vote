@@ -67,7 +67,6 @@ public class TrackComplaintActivity extends AppCompatActivity {
                 Complaint retrieved = DBHelper.getComplaint(issue);
                 if (retrieved != null) {
                     error_message.setVisibility(View.INVISIBLE);
-                    //TODO fill all boxes from DB (i.e the edit ones)
                     //sample CODE
                     //only if complaint found
 

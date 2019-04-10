@@ -97,7 +97,6 @@ public class HomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings_voter) {
-            //TODO: check data access over here (MY PROFILE)
             Intent intent=new Intent(HomeActivity.this, MyProfile.class);
             intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
             startActivityForResult(intent, REQUEST_CODE);
