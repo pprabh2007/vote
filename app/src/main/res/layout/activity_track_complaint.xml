@@ -42,22 +42,52 @@
 
             <EditText
 
+
                 android:id="@+id/track_com_edit"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
 
                 android:layout_height="wrap_content"
                 android:layout_below="@id/track_com_title_label"
 
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
+
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="48dp"
+                android:layout_marginLeft="48dp"
                 android:backgroundTint="#C63339"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:paddingRight="18dp"
+                android:hint="Enter Reference number"
                 android:inputType="text" />
 
+            <TextView
+                android:id="@+id/track_cm"
+                android:layout_width="wrap_content"
+                android:paddingTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/track_com_title_label"
+
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:backgroundTint="#C63339"
+                android:text="CM"
+                android:paddingLeft="3dp"
+                android:textStyle="bold"
+                android:layout_alignBottom="@id/track_com_edit"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                />
 
 
 
 
             <Button
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+
                 android:id="@+id/track_com"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -92,6 +122,7 @@
                 android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="16sp"
+                android:visibility="invisible"
 
                 />
             <TextView
@@ -105,7 +136,7 @@
                 android:paddingLeft="4dp"
                 android:text="NA091032"
                 android:textColor="#000000"
-
+                android:visibility="invisible"
                 android:textSize="16sp"
 
                 />
@@ -122,6 +153,7 @@
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 />
             <TextView
                 android:id="@+id/track_com_title_edit"
@@ -135,6 +167,7 @@
                 android:text="Nothing"
                 android:textColor="#000000"
                 android:textSize="16sp"
+                android:visibility="invisible"
                 />
             <TextView
                 android:id="@+id/track_com_date"
@@ -149,6 +182,7 @@
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 />
             <TextView
                 android:id="@+id/track_com_date_edit"
@@ -162,6 +196,7 @@
                 android:text="19/09/2018"
                 android:textColor="#000000"
                 android:textSize="16sp"
+                android:visibility="invisible"
                 />
             <TextView
                 android:id="@+id/track_com_status"
@@ -176,6 +211,7 @@
                 android:textColor="#000000"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 />
             <TextView
                 android:id="@+id/track_com_status_edit"
@@ -189,7 +225,24 @@
                 android:text="As Usual (Nothing)"
                 android:textColor="#000000"
                 android:textSize="16sp"
+                android:visibility="invisible"
                 />
+
+            <TextView
+                android:id="@+id/error_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/track_com"
+                android:layout_alignParentEnd="true"
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginRight="113dp"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text="Invalid Reference number!"
+                android:textColor="#8B0000" />
         </RelativeLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

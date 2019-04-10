@@ -356,7 +356,6 @@ public class Databasehelper extends SQLiteOpenHelper {
                 cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE, null);
                 break;
         }
-
         if(cur.moveToFirst())
         {
             do
@@ -420,11 +419,6 @@ public class Databasehelper extends SQLiteOpenHelper {
         ContentValues con=new ContentValues();
         con.put(CONSTANTS.UPVOTES, THIS_COMPLAINT.getUpvotes());
         con.put(CONSTANTS.UPVOTES_STRING, THIS_COMPLAINT.getUpvotes_string());
-
         db.update(CONSTANTS.COMPLAINT_TABLE, con, CONSTANTS.ID+"=?", new String[]{THIS_COMPLAINT.getID()});
-
     }
-
-
-
 }
