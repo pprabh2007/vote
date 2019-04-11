@@ -443,8 +443,4 @@ public class Databasehelper extends SQLiteOpenHelper {
         db.update(CONSTANTS.COMPLAINT_TABLE, con, CONSTANTS.ID+"=?", new String[]{THIS_COMPLAINT.getID()});
 
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> d06752ec45b10cb9daa53767fb9a1713b1565862

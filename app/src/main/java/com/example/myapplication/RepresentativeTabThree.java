@@ -29,11 +29,8 @@ public class RepresentativeTabThree extends Fragment {
         DBHelper = new Databasehelper(this.getActivity());
         extras=getActivity().getIntent().getExtras();
         THIS_USER_OBJECT=(User)extras.getSerializable("THIS_USER_OBJECT");
-<<<<<<< HEAD
         RepresentativeViewComplaintAdapterNew adapter = new RepresentativeViewComplaintAdapterNew( this.getActivity(),DBHelper.filterComplaints(THIS_USER_OBJECT,7)  );
-=======
-        RepresentativeViewComplaintAdapter adapter = new RepresentativeViewComplaintAdapter( this.getActivity(),DBHelper.filterComplaints(THIS_USER_OBJECT,7)  );
->>>>>>> d06752ec45b10cb9daa53767fb9a1713b1565862
+
         rv.setAdapter(adapter);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
