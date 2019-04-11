@@ -456,4 +456,24 @@ public class Databasehelper extends SQLiteOpenHelper {
         db.update(CONSTANTS.COMPLAINT_TABLE, con, CONSTANTS.ID+"=?", new String[]{THIS_COMPLAINT.getID()});
 
     }
+
+    public HashMap<String, Integer> getPerformanceData(String constituency)
+    {
+        HashMap<String, Integer> performance_map=new HashMap<String, Integer>();
+
+        SQLiteDatabase db=this.getReadableDatabase();
+
+        Cursor cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.CONSTITUENCY+"=?"+" AND "+CONSTANTS.STATUS_DESC+"=?", new String[]{constituency, "Launched"});
+        performance_map.put("Launched", cur.getCount());
+
+        cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.CONSTITUENCY+"=?"+" AND "+CONSTANTS.STATUS_DESC+"=?", new String[]{constituency, "Assigned"});
+        performance_map.put("Assigned", cur.getCount());
+
+        cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.CONSTITUENCY+"=?"+" AND "+CONSTANTS.STATUS_DESC+"=?", new String[]{constituency, "Completed"});
+        performance_map.put("Completed", cur.getCount());
+
+        return performance_map;
+
+    }
+
 }
