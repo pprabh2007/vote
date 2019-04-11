@@ -2,7 +2,10 @@ package adapters;
 //this is for tab 0,2,3
 
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -76,7 +79,22 @@ public class RepresentativeViewComplaintAdapterNew extends RecyclerView.Adapter<
 
         @Override
         public void onClick(View v) {
-            //do nothing
+            Dialog dialog;
+
+            AlertDialog.Builder dialog_builder=new AlertDialog.Builder(context);
+            dialog_builder.setTitle("Description");
+            dialog_builder.setMessage(complaintList.get(getAdapterPosition()).getDescription());
+
+            dialog_builder.setCancelable(false);
+            dialog_builder.setPositiveButton(R.string.button1, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+            dialog=dialog_builder.create();
+            dialog.show();
         }
     }
 }

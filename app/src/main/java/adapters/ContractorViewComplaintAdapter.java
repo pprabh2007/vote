@@ -76,6 +76,7 @@ public class ContractorViewComplaintAdapter extends RecyclerView.Adapter<Contrac
         TextView complaint_bid;
         Button make_bid_button;
         TextView con_bid_made;
+        Button describe;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -89,6 +90,7 @@ public class ContractorViewComplaintAdapter extends RecyclerView.Adapter<Contrac
             complaint_bid=(TextView)itemView.findViewById(R.id.con_complaint_bid);
             con_bid_made=(TextView)itemView.findViewById(R.id.con_bidded_message);
             make_bid_button=(Button)itemView.findViewById(R.id.con_place_bid_button);
+            describe=(Button)itemView.findViewById(R.id.description_button);
             //TODO implement accept bid button backend
             make_bid_button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,6 +132,30 @@ public class ContractorViewComplaintAdapter extends RecyclerView.Adapter<Contrac
 
                     dialog=dialog_builder.create();
                     dialog.show();
+                }
+            });
+
+            describe.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Dialog dialog;
+
+                    AlertDialog.Builder dialog_builder=new AlertDialog.Builder(context);
+                    dialog_builder.setTitle("Description");
+                    dialog_builder.setMessage(complaintList.get(getAdapterPosition()).getDescription());
+
+                    dialog_builder.setCancelable(false);
+                    dialog_builder.setPositiveButton(R.string.button1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    dialog=dialog_builder.create();
+                    dialog.show();
+
                 }
             });
 

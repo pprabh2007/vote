@@ -74,6 +74,7 @@ public class RepresentativeViewComplaintAdapter extends RecyclerView.Adapter<Rep
         TextView complaint_bid;
         Button accept_bid_button;
         TextView assigned_message;
+        Button describe;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -87,6 +88,7 @@ public class RepresentativeViewComplaintAdapter extends RecyclerView.Adapter<Rep
             complaint_bid=(TextView)itemView.findViewById(R.id.rep_complaint_bid);
             accept_bid_button=(Button)itemView.findViewById(R.id.rep_accept_bid_button);
             assigned_message=(TextView)itemView.findViewById(R.id.rep_assigned_message);
+            describe=(Button)itemView.findViewById(R.id.description_button);
             accept_bid_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -120,6 +122,30 @@ public class RepresentativeViewComplaintAdapter extends RecyclerView.Adapter<Rep
                 }
             });
             //TODO implement accept bid button backend
+
+            describe.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Dialog dialog;
+
+                    AlertDialog.Builder dialog_builder=new AlertDialog.Builder(context);
+                    dialog_builder.setTitle("Description");
+                    dialog_builder.setMessage(complaintList.get(getAdapterPosition()).getDescription());
+
+                    dialog_builder.setCancelable(false);
+                    dialog_builder.setPositiveButton(R.string.button1, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    dialog=dialog_builder.create();
+                    dialog.show();
+
+                }
+            });
         }
 
         @Override
