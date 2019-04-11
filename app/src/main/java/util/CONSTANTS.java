@@ -51,12 +51,14 @@ public class CONSTANTS
 
 
     /*COMPLAINTS FILTERS- REQUEST CODES*/
-    public static final int AVAILABLE_TO_BID= 1;
-    public static final int ASSIGNED=2;
-    public static final int COMPLETED=3;
+    public static final int CON_AVAILABLE_TO_BID= 1;
+    public static final int CON_ASSIGNED=2;
+    public static final int CON_COMPLETED=3;
 
-    public static final int BIDDED=4;
-    public static final int NON_BIDDED=5;
+    public static final int REP_BIDDED=4;
+    public static final int REP_NON_BIDDED=5;
+    public static final int REP_ONGOING=6;
+    public static final int REP_COMPLETED=7;
 
 
     public static final String getDate(int d, int m, int y)

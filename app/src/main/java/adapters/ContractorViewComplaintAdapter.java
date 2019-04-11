@@ -5,6 +5,7 @@ package adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ public class ContractorViewComplaintAdapter extends RecyclerView.Adapter<Contrac
         viewHolder.complaint_title.setText("TITLE: "+current.getTitle());
         viewHolder.complaint_domain.setText("Domain: "+current.getDomain());
         viewHolder.complaint_contractor.setText("Contractor: "+current.getContractor());
-        viewHolder.complaint_bid.setText("Best Bid: ₹"+current.getBid_amt());
+        viewHolder.complaint_bid.setText("Best Bid: "+((current.getBid_amt()==-1)?"None":"₹"+current.getBid_amt()));
     }
 
     @Override
@@ -79,6 +80,9 @@ public class ContractorViewComplaintAdapter extends RecyclerView.Adapter<Contrac
 
         @Override
         public void onClick(View v) {
+
+            int position=getAdapterPosition();
+            Log.e("HELLO", "HELLO");
             //do nothing
         }
     }
