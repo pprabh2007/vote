@@ -11,10 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ContractorUnassignedIssuesActivity"></activity>
         <activity
             android:name=".RepresentativeViewComplaintActivity"
             android:label="@string/title_activity_representative_view_complaint"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TrackComplaintActivity" />
         <activity
             android:name=".PublishNews"

@@ -13,10 +13,6 @@
             android:icon="@drawable/ic_file_notes_document"
             android:title="View Issues" />
         <item
-            android:id="@+id/con_current_bids"
-            android:icon="@drawable/ic_wind_flag"
-            android:title="Current Bids" />
-        <item
             android:id="@+id/con_jobs_alloted"
             android:title="Jobs Alloted"
             android:icon="@drawable/ic_trolley_box_service"
