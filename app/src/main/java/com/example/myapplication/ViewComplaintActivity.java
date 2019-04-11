@@ -40,7 +40,7 @@ public class ViewComplaintActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        viewComplaintAdapter=new ViewComplaintAdapter(this, DBHelper.getAllComplaints(THIS_USER_OBJECT.getConstituency()));
+        viewComplaintAdapter=new ViewComplaintAdapter(this, DBHelper.getAllComplaints(THIS_USER_OBJECT.getConstituency()), THIS_USER_OBJECT);
         recyclerView.setAdapter(viewComplaintAdapter);
 
 

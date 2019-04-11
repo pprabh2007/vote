@@ -92,6 +92,30 @@
                 android:textColor="#000000"
                 />
 
+            <Button
+                android:id="@+id/upvote_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/mybutton"
+                android:padding="10dp"
+                android:text="Upvote"
+                android:textColor="#000000"  />
+
+            <TextView
+                android:id="@+id/upvote_message"
+                android:textColor="#215A21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="Upvoted!"
+                />
+
 
         </LinearLayout>
 

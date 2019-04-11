@@ -201,4 +201,18 @@ public class Complaint {
         this.user_name_launcher = user_name_launcher;
     }
 
+    public boolean hasUserUpvote(User UserObject)
+    {
+        String[] split_set=this.upvotes_string.split(" ", 0);
+        for (String temp: split_set)
+        {
+            if(temp.equals(UserObject.getUser_name()))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

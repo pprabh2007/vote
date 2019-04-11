@@ -4,14 +4,18 @@ package adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.myapplication.ComplaintDetailsAcitivity;
+import com.example.myapplication.Databasehelper;
 import com.example.myapplication.R;
 import com.example.myapplication.ViewComplaintActivity;
 
@@ -20,18 +24,24 @@ import org.w3c.dom.Text;
 import java.util.List;
 
 import util.Complaint;
+import util.User;
+
+import static android.view.View.GONE;
 
 public class ViewComplaintAdapter extends RecyclerView.Adapter<ViewComplaintAdapter.ViewHolder> {
 
 
     private Context context;
     private List<Complaint> complaintList;
+    private Databasehelper DBHelper;
+    private User THIS_USER_OBJECT;
 
-
-    public ViewComplaintAdapter(Context context, List<Complaint> complaintList)
+    public ViewComplaintAdapter(Context context, List<Complaint> complaintList, User THIS_USER_OBJECT)
     {
         this.context=context;
         this.complaintList=complaintList;
+        this.DBHelper=new Databasehelper(context);
+        this.THIS_USER_OBJECT=THIS_USER_OBJECT;
     }
 
     @NonNull
@@ -52,6 +62,16 @@ public class ViewComplaintAdapter extends RecyclerView.Adapter<ViewComplaintAdap
         viewHolder.comp_domain.setText("Domain: "+current.getDomain());
         viewHolder.comp_status.setText("Status: "+current.getStatus_description());
 
+        if(current.hasUserUpvote(THIS_USER_OBJECT))
+        {
+            viewHolder.upvote_button.setVisibility(View.GONE);
+            viewHolder.upvote_message.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            viewHolder.upvote_button.setVisibility(View.VISIBLE);
+            viewHolder.upvote_message.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -67,6 +87,8 @@ public class ViewComplaintAdapter extends RecyclerView.Adapter<ViewComplaintAdap
         TextView comp_date;
         TextView comp_domain;
         TextView comp_status;
+        Button upvote_button;
+        TextView upvote_message;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -77,6 +99,18 @@ public class ViewComplaintAdapter extends RecyclerView.Adapter<ViewComplaintAdap
             comp_date=(TextView)itemView.findViewById(R.id.complaint_date);
             comp_domain=(TextView)itemView.findViewById(R.id.complaint_domain);
             comp_status=(TextView)itemView.findViewById(R.id.complaint_status);
+            upvote_button=(Button)itemView.findViewById(R.id.upvote_button);
+            upvote_message=(TextView)itemView.findViewById(R.id.upvote_message);
+            upvote_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    DBHelper.upvoteIssue(complaintList.get(getAdapterPosition()), THIS_USER_OBJECT);
+                    upvote_button.setVisibility(GONE);
+                    upvote_message.setVisibility(View.VISIBLE);
+                }
+            });
+
         }
 
         @Override
