@@ -33,7 +33,7 @@ public class ContractorTabOne extends Fragment {
         extras=getActivity().getIntent().getExtras();
         THIS_USER_OBJECT=(User)extras.getSerializable("THIS_USER_OBJECT");
         //TODO fill key here
-        ContractorViewComplaintAdapter adapter = new ContractorViewComplaintAdapter( this.getActivity(),DBHelper.filterComplaints(THIS_USER_OBJECT,1)  );
+        ContractorViewComplaintAdapter adapter = new ContractorViewComplaintAdapter( this.getActivity(),DBHelper.filterComplaints(THIS_USER_OBJECT,1), THIS_USER_OBJECT);
         rv.setAdapter(adapter);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());

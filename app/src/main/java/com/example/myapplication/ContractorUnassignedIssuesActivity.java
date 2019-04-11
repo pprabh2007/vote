@@ -32,7 +32,7 @@ public class ContractorUnassignedIssuesActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        viewComplaintAdapter=new ContractorViewComplaintAdapter(this, DBHelper.filterComplaints(THIS_USER_OBJECT,1));
+        viewComplaintAdapter=new ContractorViewComplaintAdapter(this, DBHelper.filterComplaints(THIS_USER_OBJECT,1), THIS_USER_OBJECT);
         recyclerView.setAdapter(viewComplaintAdapter);
     }
     protected void onStop()

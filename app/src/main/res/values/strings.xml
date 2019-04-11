@@ -23,4 +23,6 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="yes">Yes</string>
     <string name="no">Leave it for now</string>
+    <string name="confirm">Confirm</string>
+    <string name="close">Close</string>
 </resources>

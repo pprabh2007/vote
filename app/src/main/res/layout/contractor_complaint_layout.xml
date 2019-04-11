@@ -87,6 +87,18 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/con_bidded_message"
+                android:visibility="gone"
+                android:textColor="#215A21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:padding="10dp"
+                android:text="Bid Registered"
+                />
+
             <Button
                 android:id="@+id/con_place_bid_button"
                 android:layout_width="wrap_content"

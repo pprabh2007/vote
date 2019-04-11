@@ -57,7 +57,7 @@ public class RepresentativeViewComplaintAdapter extends RecyclerView.Adapter<Rep
         viewHolder.complaint_title.setText("TITLE: "+current.getTitle());
         viewHolder.complaint_domain.setText("Domain: "+current.getDomain());
         viewHolder.complaint_contractor.setText("Contractor: "+current.getContractor());
-        viewHolder.complaint_bid.setText("Best Bid: ₹"+current.getBid_amt());
+        viewHolder.complaint_bid.setText("Best Bid: "+((current.getBid_amt()==-1)?"None":"₹"+current.getBid_amt()));
     }
 
     @Override

@@ -43,9 +43,13 @@ public class RepresentativeTabOne extends Fragment {
         extras=getActivity().getIntent().getExtras();
         THIS_USER_OBJECT=(User)extras.getSerializable("THIS_USER_OBJECT");
 
+        //Log.e("heofei", DBHelper.filterComplaints(THIS_USER_OBJECT,4).get(0).getID());
+
         RepresentativeViewComplaintAdapter adapter = new RepresentativeViewComplaintAdapter( this.getActivity(),DBHelper.filterComplaints(THIS_USER_OBJECT,4)  );
+        rv.setAdapter(adapter);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+
         rv.setLayoutManager(llm);
 
 
