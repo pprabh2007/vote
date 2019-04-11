@@ -18,23 +18,25 @@
         android:layout_margin="4dp"
 
         card_view:cardBackgroundColor="#FFFFFF"
-        card_view:cardCornerRadius="6dp"
-        card_view:contentPaddingBottom="8dp"
         card_view:contentPaddingLeft="24dp"
         card_view:contentPaddingRight="24dp"
         card_view:contentPaddingTop="8dp"
+        card_view:contentPaddingBottom="8dp"
+        card_view:cardCornerRadius="8dp"
 
 
-        >
+
+    >
 
         <LinearLayout
 
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            >
 
             <TextView
-                android:id="@+id/con_complaint_id"
+                android:id="@+id/rep_complaint_id_new"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -46,7 +48,7 @@
                 android:textStyle="italic" />
 
             <TextView
-                android:id="@+id/con_complaint_title"
+                android:id="@+id/rep_complaint_title_new"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
@@ -58,7 +60,7 @@
 
 
             <TextView
-                android:id="@+id/con_complaint_domain"
+                android:id="@+id/rep_complaint_domain_new"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -68,7 +70,7 @@
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/con_complaint_contractor"
+                android:id="@+id/rep_complaint_contractor_new"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
@@ -78,25 +80,25 @@
                 android:textStyle="normal" />
 
             <TextView
-                android:id="@+id/con_complaint_bid"
+                android:id="@+id/rep_complaint_bid_new"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
-                android:text="Best Bid:  "
+                android:text="Bid Amount:  "
                 android:textColor="#000000"
                 android:textSize="22sp"
                 android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/con_place_bid_button"
+            <TextView
+                android:id="@+id/rep_assigned_message"
+                android:visibility="gone"
+                android:textColor="#215A21"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/mybutton"
                 android:padding="10dp"
-                android:text="Place Bid"
-                android:textColor="#000000" />
+                android:text="Tender Granted"
+                />
         </LinearLayout>
 
 

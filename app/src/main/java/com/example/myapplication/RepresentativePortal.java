@@ -145,6 +145,9 @@ public class RepresentativePortal extends AppCompatActivity
 
             Toast toast = Toast.makeText(context, text, duration);
             toast.show();
+
+            Intent intent=new Intent(RepresentativePortal.this , MainActivity.class);
+            startActivity(intent);
             finish();
 
 

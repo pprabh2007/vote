@@ -1,25 +1,20 @@
 package com.example.myapplication;
 
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.TextView;
 
-public class RepresentativeViewComplaintActivity extends AppCompatActivity {
+public class ContractorViewComplaintActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -39,7 +34,7 @@ public class RepresentativeViewComplaintActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_representative_view_complaint);
+        setContentView(R.layout.activity_contractor_view_complaint);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -62,7 +57,7 @@ public class RepresentativeViewComplaintActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_representative_view_complaint, menu);
+        getMenuInflater().inflate(R.menu.menu_contractor_view_complaint, menu);
         return true;
     }
 
@@ -94,7 +89,7 @@ public class RepresentativeViewComplaintActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_representative_view_complaint, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_contractor_view_complaint, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.section_label);
             textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
             return rootView;
@@ -118,16 +113,13 @@ public class RepresentativeViewComplaintActivity extends AppCompatActivity {
             switch (position)
             {
                 case 0:
-                    RepresentativeTabZero tabzero =new RepresentativeTabZero();
-                    return tabzero;
-                case 1:
-                    RepresentativeTabOne tabone =new RepresentativeTabOne();
+                    ContractorTabOne tabone =new ContractorTabOne();
                     return tabone;
-                case 2:
-                    RepresentativeTabTwo tabtwo =new RepresentativeTabTwo();
+                case 1:
+                    ContractorTabTwo tabtwo =new ContractorTabTwo();
                     return tabtwo;
-                case 3:
-                    RepresentativeTabThree tabthree =new RepresentativeTabThree();
+                case 2:
+                    ContractorTabThree tabthree =new ContractorTabThree();
                     return tabthree;
                 default:
                     return null;
@@ -137,7 +129,7 @@ public class RepresentativeViewComplaintActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 4;
+            return 3;
         }
     }
 }

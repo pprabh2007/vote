@@ -14,7 +14,11 @@
         <activity android:name=".ContractorUnassignedIssuesActivity"></activity>
         <activity
             android:name=".RepresentativeViewComplaintActivity"
-            android:label="@string/title_activity_representative_view_complaint"
+            android:label="Representative View Complaint Activity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ContractorViewComplaintActivity"
+            android:label="Contractor View Complaint Activity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".TrackComplaintActivity" />
         <activity

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import adapters.RepresentativeViewComplaintAdapter;
+import adapters.RepresentativeViewComplaintAdapterNew;
 import util.User;
 
 public class RepresentativeTabThree extends Fragment {
@@ -28,7 +29,7 @@ public class RepresentativeTabThree extends Fragment {
         DBHelper = new Databasehelper(this.getActivity());
         extras=getActivity().getIntent().getExtras();
         THIS_USER_OBJECT=(User)extras.getSerializable("THIS_USER_OBJECT");
-        RepresentativeViewComplaintAdapter adapter = new RepresentativeViewComplaintAdapter( this.getActivity(),DBHelper.filterComplaints(THIS_USER_OBJECT,3)  );
+        RepresentativeViewComplaintAdapterNew adapter = new RepresentativeViewComplaintAdapterNew( this.getActivity(),DBHelper.filterComplaints(THIS_USER_OBJECT,7)  );
         rv.setAdapter(adapter);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());

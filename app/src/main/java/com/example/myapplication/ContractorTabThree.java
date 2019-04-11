@@ -10,11 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import adapters.RepresentativeViewComplaintAdapter;
-import adapters.RepresentativeViewComplaintAdapterNew;
+import adapters.ContractorViewComplaintAdapter;
+import adapters.ContractorViewComplaintAdapterNew;
 import util.User;
 
-public class RepresentativeTabTwo extends Fragment {
+public class ContractorTabThree extends Fragment {
 
     Databasehelper DBHelper;
     Bundle extras;
@@ -22,16 +22,14 @@ public class RepresentativeTabTwo extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView=inflater.inflate(R.layout.representative_tab_two,container,false);
+        View rootView=inflater.inflate(R.layout.representative_tab_three,container,false);
         RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.recyclerview);
         rv.setHasFixedSize(true);
-
 
         DBHelper = new Databasehelper(this.getActivity());
         extras=getActivity().getIntent().getExtras();
         THIS_USER_OBJECT=(User)extras.getSerializable("THIS_USER_OBJECT");
-
-        RepresentativeViewComplaintAdapterNew adapter = new RepresentativeViewComplaintAdapterNew( this.getActivity(),DBHelper.filterComplaints(THIS_USER_OBJECT,6)  );
+        ContractorViewComplaintAdapterNew adapter = new ContractorViewComplaintAdapterNew( this.getActivity(),DBHelper.filterComplaints(THIS_USER_OBJECT,3)  );
         rv.setAdapter(adapter);
 
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());

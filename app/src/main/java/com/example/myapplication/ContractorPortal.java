@@ -114,22 +114,9 @@ public class ContractorPortal extends AppCompatActivity
         }
         else if(id==R.id.con_view_complaints_nav_bar)
         {
-            Intent intent=new Intent(ContractorPortal.this, ContractorUnassignedIssuesActivity.class);
+            Intent intent=new Intent(ContractorPortal.this, ContractorViewComplaintActivity.class);
             intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
             startActivityForResult(intent, REQUEST_CODE);
-
-        }
-        else if (id == R.id.con_jobs_alloted) {
-
-            /*Intent intent=new Intent(HomeActivity.this, ViewComplaintActivity.class);
-            intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
-            startActivityForResult(intent, REQUEST_CODE);*/
-
-        } else if (id == R.id.con_jobs_completed) {
-
-            //Intent intent=new Intent(HomeActivity.this, TrackComplaintActivity.class);
-            //intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
-            //startActivityForResult(intent, REQUEST_CODE);
 
         }
         else if(id==R.id.con_logout_nav_bar)

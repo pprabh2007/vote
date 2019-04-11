@@ -5,7 +5,6 @@ package adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,14 +17,14 @@ import java.util.List;
 
 import util.Complaint;
 
-public class ContractorViewComplaintAdapter extends RecyclerView.Adapter<ContractorViewComplaintAdapter.ViewHolder> {
+public class ContractorViewComplaintAdapterNew extends RecyclerView.Adapter<ContractorViewComplaintAdapterNew.ViewHolder> {
 
 
     private Context context;
     private List<Complaint> complaintList;
 
 
-    public ContractorViewComplaintAdapter(Context context, List<Complaint> complaintList)
+    public ContractorViewComplaintAdapterNew(Context context, List<Complaint> complaintList)
     {
         this.context=context;
         this.complaintList=complaintList;
@@ -34,7 +33,7 @@ public class ContractorViewComplaintAdapter extends RecyclerView.Adapter<Contrac
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.contractor_complaint_layout , viewGroup, false);
+        View view= LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.contractor_complaint_layout_new , viewGroup, false);
 
         return (new ViewHolder(view));
     }
@@ -46,8 +45,8 @@ public class ContractorViewComplaintAdapter extends RecyclerView.Adapter<Contrac
         viewHolder.complaint_id.setText("ID: "+current.getID());
         viewHolder.complaint_title.setText("TITLE: "+current.getTitle());
         viewHolder.complaint_domain.setText("Domain: "+current.getDomain());
-        viewHolder.complaint_contractor.setText("Contractor: "+current.getContractor());
-        viewHolder.complaint_bid.setText("Best Bid: "+((current.getBid_amt()==-1)?"None":"₹"+current.getBid_amt()));
+        //viewHolder.complaint_contractor.setText("Contractor: "+current.getContractor());
+        viewHolder.complaint_bid.setText("Tender Amount: ₹"+current.getBid_amt());
     }
 
     @Override
@@ -62,7 +61,7 @@ public class ContractorViewComplaintAdapter extends RecyclerView.Adapter<Contrac
         TextView complaint_domain;
         TextView complaint_contractor;
         TextView complaint_bid;
-        Button accept_bid_button;
+        Button place_bid_button;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,17 +71,14 @@ public class ContractorViewComplaintAdapter extends RecyclerView.Adapter<Contrac
             complaint_id=(TextView)itemView.findViewById(R.id.con_complaint_id);
             complaint_title=(TextView)itemView.findViewById(R.id.con_complaint_title);
             complaint_domain=(TextView)itemView.findViewById(R.id.con_complaint_domain);
-            complaint_contractor=(TextView)itemView.findViewById(R.id.con_complaint_contractor);
+            //complaint_contractor=(TextView)itemView.findViewById(R.id.con_complaint_contractor);
             complaint_bid=(TextView)itemView.findViewById(R.id.con_complaint_bid);
-            accept_bid_button=(Button)itemView.findViewById(R.id.con_place_bid_button);
-            //TODO implement accept bid button backend
+            //place_bid_button=(Button)itemView.findViewById(R.id.con_place_bid_button);
+            //TODO implement place BID Button here
         }
 
         @Override
         public void onClick(View v) {
-
-            int position=getAdapterPosition();
-            Log.e("HELLO", "HELLO");
             //do nothing
         }
     }

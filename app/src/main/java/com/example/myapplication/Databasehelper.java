@@ -20,7 +20,7 @@ import util.User;
 
 public class Databasehelper extends SQLiteOpenHelper {
     public Databasehelper(Context context) {
-            super(context, CONSTANTS.DATABASE_NAME, null, CONSTANTS.VERSION);
+        super(context, CONSTANTS.DATABASE_NAME, null, CONSTANTS.VERSION);
     }
 
     @Override
@@ -346,10 +346,16 @@ public class Databasehelper extends SQLiteOpenHelper {
 
                 break;
             case 4:
-                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.STATUS_DESC+"=?"+" AND "+CONSTANTS.BID_AMT+"!=?", new String[]{"Launched", "-1"});
+                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.STATUS_DESC+"=?"+" AND "+CONSTANTS.BID_AMT+"!=?"+" AND "+CONSTANTS.CONSTITUENCY+"=?", new String[]{"Launched", "-1", THIS_USER_OBJECT.getConstituency()});
                 break;
             case 5:
-                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.BID_AMT+"=?", new String[]{"-1"});
+                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.CONSTITUENCY+"=?"+" AND "+CONSTANTS.BID_AMT+"=?", new String[]{THIS_USER_OBJECT.getConstituency(), "-1"});
+                break;
+            case 6:
+                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.CONSTITUENCY+"=?"+" AND "+CONSTANTS.STATUS_DESC+"=?", new String[]{THIS_USER_OBJECT.getConstituency(), "Assigned"});
+                break;
+            case 7:
+                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.CONSTITUENCY+"=?"+" AND "+CONSTANTS.STATUS_DESC+"=?", new String[]{THIS_USER_OBJECT.getConstituency(), "Completed"});
                 break;
 
             default:
@@ -420,5 +426,17 @@ public class Databasehelper extends SQLiteOpenHelper {
         con.put(CONSTANTS.UPVOTES, THIS_COMPLAINT.getUpvotes());
         con.put(CONSTANTS.UPVOTES_STRING, THIS_COMPLAINT.getUpvotes_string());
         db.update(CONSTANTS.COMPLAINT_TABLE, con, CONSTANTS.ID+"=?", new String[]{THIS_COMPLAINT.getID()});
+    }
+
+    public void setAssigned(Complaint THIS_COMPLAINT)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+
+        THIS_COMPLAINT.setStatus_description("Assigned");
+
+        ContentValues con=new ContentValues();
+        con.put(CONSTANTS.STATUS_DESC, THIS_COMPLAINT.getStatus_description());
+        db.update(CONSTANTS.COMPLAINT_TABLE, con, CONSTANTS.ID+"=?", new String[]{THIS_COMPLAINT.getID()});
+
     }
 }
