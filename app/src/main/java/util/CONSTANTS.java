@@ -1,5 +1,7 @@
 package util;
 
+import android.graphics.Color;
+
 import java.util.List;
 
 public class CONSTANTS
@@ -60,7 +62,12 @@ public class CONSTANTS
     public static final int REP_ONGOING=6;
     public static final int REP_COMPLETED=7;
 
+    /* COLORS */
+    public static final int PIE_RED= Color.rgb(183, 18, 18);
+    public static final int PIE_ORANGE= Color.rgb(244, 170, 51);
+    public static final int PIE_GREEN= Color.rgb(46, 137, 78);
 
+    /* FINAL METHODS */
     public static final String getDate(int d, int m, int y)
     {
         String date="";
