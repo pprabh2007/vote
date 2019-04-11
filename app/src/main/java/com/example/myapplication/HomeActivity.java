@@ -135,8 +135,15 @@ public class HomeActivity extends AppCompatActivity
 
         } else if (id == R.id.funds_nav_bar) {
             Intent intent=new Intent(HomeActivity.this , FundsActivity.class);
+            intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
             startActivity(intent);
 
+        }
+        else if(id==R.id.rep_report_nav_bar)
+        {
+            Intent intent=new Intent(HomeActivity.this , RepReport.class);
+            intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
+            startActivity(intent);
         }
         else if(id==R.id.logout_nav_bar)
         {

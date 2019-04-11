@@ -15,7 +15,7 @@
         <item
             android:id="@+id/view_complaints_nav_bar"
             android:icon="@drawable/ic_places_colosseum"
-            android:title="View Complaints" />
+            android:title="View All Complaints" />
         <item
             android:id="@+id/track_nav_bar"
             android:icon="@drawable/ic_binoculars"
@@ -25,6 +25,11 @@
             android:id="@+id/funds_nav_bar"
             android:icon="@drawable/ic_banking_spendings_1"
             android:title="Funds &amp; Grants" />
+        <item
+            android:id="@+id/rep_report_nav_bar"
+            android:title="Representative Performance"
+            android:icon="@drawable/a"
+            />
         <item
             android:id="@+id/logout_nav_bar"
             android:title="Logout"
