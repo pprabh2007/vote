@@ -444,4 +444,16 @@ public class Databasehelper extends SQLiteOpenHelper {
         db.update(CONSTANTS.COMPLAINT_TABLE, con, CONSTANTS.ID+"=?", new String[]{THIS_COMPLAINT.getID()});
 
     }
+
+    public void setCompleted(Complaint THIS_COMPLAINT)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+
+        THIS_COMPLAINT.setStatus_description("Completed");
+
+        ContentValues con=new ContentValues();
+        con.put(CONSTANTS.STATUS_DESC, THIS_COMPLAINT.getStatus_description());
+        db.update(CONSTANTS.COMPLAINT_TABLE, con, CONSTANTS.ID+"=?", new String[]{THIS_COMPLAINT.getID()});
+
+    }
 }
