@@ -9,6 +9,8 @@ import android.util.Log;
 
 import java.sql.SQLInput;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -388,6 +390,8 @@ public class Databasehelper extends SQLiteOpenHelper {
             }while(cur.moveToNext());
         }
 
+        Collections.reverse(filtered_complaints);
+
         return filtered_complaints;
 
     }
@@ -439,4 +443,8 @@ public class Databasehelper extends SQLiteOpenHelper {
         db.update(CONSTANTS.COMPLAINT_TABLE, con, CONSTANTS.ID+"=?", new String[]{THIS_COMPLAINT.getID()});
 
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d06752ec45b10cb9daa53767fb9a1713b1565862
