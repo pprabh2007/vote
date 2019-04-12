@@ -139,8 +139,8 @@ public class HomeActivity extends AppCompatActivity
             startActivity(intent);
 
         }
-        else if(id==R.id.rep_report_nav_bar)
-        {
+        else if(id == R.id.rep_report_nav_bar) {
+
             Intent intent=new Intent(HomeActivity.this , RepReport.class);
             intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
             startActivity(intent);

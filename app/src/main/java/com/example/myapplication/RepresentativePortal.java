@@ -114,8 +114,9 @@ public class RepresentativePortal extends AppCompatActivity
             startActivityForResult(intent, REQUEST_CODE);
 
         } else if (id == R.id.rep_funds_nav_bar) {
-            Intent intent=new Intent(RepresentativePortal.this , FundsActivity.class);
-            startActivity(intent);
+            Intent intent=new Intent(RepresentativePortal.this, FundsActivity.class);
+            intent.putExtra("THIS_USER_OBJECT", THIS_USER_OBJECT);
+            startActivityForResult(intent, REQUEST_CODE);
 
         } else if (id == R.id.rep_contractor_list) {
             Context context = getApplicationContext();

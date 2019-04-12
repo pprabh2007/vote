@@ -21,7 +21,7 @@
 
 
             <TextView
-                android:id="@+id/title_available_fund"
+                android:id="@+id/taskwise_label"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
                 android:layout_alignParentTop="true"
 
                 android:paddingLeft="4dp"
-                android:text="Fund Available"
+                android:text="Task-wise Expenditure"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 android:textAlignment="center"
@@ -40,35 +40,35 @@
                 />
             <TextView
 
-                android:id="@+id/available_fund"
+                android:id="@+id/taskwise_data"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_below="@id/title_available_fund"
+                android:layout_below="@id/taskwise_label"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
 
                 android:layout_marginTop="7dp"
                 android:paddingLeft="4dp"
 
-                android:text="₹ 7,30,000"
+                android:text=""
                 android:textColor="#000000"
                 android:textSize="16sp" />
 
 
             <TextView
-                android:id="@+id/title_Spent_fund"
+                android:id="@+id/total_expense_label"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_below="@id/available_fund"
+                android:layout_below="@id/taskwise_data"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:paddingTop="15dp"
                 android:paddingLeft="4dp"
-                android:text="Fund Allocated"
+                android:text="Total Expenditure Till Now"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 android:textAlignment="center"
@@ -77,19 +77,19 @@
                 />
             <TextView
 
-                android:id="@+id/allocated_fund"
+                android:id="@+id/total_expense_data"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_below="@id/title_Spent_fund"
+                android:layout_below="@id/total_expense_label"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
 
                 android:layout_marginTop="7dp"
                 android:paddingLeft="4dp"
 
-                android:text="₹ 4,10,000"
+                android:text=""
                 android:textColor="#000000"
                 android:textSize="16sp" />
         </RelativeLayout>
