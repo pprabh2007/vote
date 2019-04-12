@@ -7,7 +7,7 @@ import java.util.List;
 public class CONSTANTS
 {
     public static final String DATABASE_NAME="DATABASE.db";
-    public static final int VERSION=9;
+    public static final int VERSION=11;
 
     /* TABLE 1*/
     public static final String REGISTRATION_TABLE="REGISTRATION_TABLE";

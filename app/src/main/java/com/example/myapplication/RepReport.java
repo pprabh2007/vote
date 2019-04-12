@@ -44,7 +44,8 @@ public class RepReport extends AppCompatActivity {
         representative_name=findViewById(R.id.person_title);
 
         constituency_name.setText(THIS_USER_OBJECT.getConstituency());
-        representative_name.setText(THIS_USER_OBJECT.getName());
+        //representative_name.setText(THIS_USER_OBJECT.getName());
+        representative_name.setText("");
 
         setupPieChartAndData();
 

@@ -337,7 +337,7 @@ public class Databasehelper extends SQLiteOpenHelper {
         switch(REQUEST_CODE)
         {
             case 1:
-                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.STATUS_DESC+"=?", new String[]{"Launched"});
+                cur=db.rawQuery("SELECT * FROM "+CONSTANTS.COMPLAINT_TABLE+" WHERE "+CONSTANTS.STATUS_DESC+"=?"+" AND "+CONSTANTS.CONSTITUENCY+"=?" , new String[]{"Launched", THIS_USER_OBJECT.getConstituency()});
                 break;
 
             case 2:
