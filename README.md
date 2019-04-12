@@ -3,13 +3,12 @@
 
 Vote is a grievance redressal system for eGovernance.
 
-#### Demo Video: ####
+#### Demo Video Link: ####
+https://youtu.be/PCuy6is9NGA
 
 
-
-#### Presentation: ####
-
-
+#### Presentation Link: ####
+https://prezi.com/p/szkx8-hu5qnf/vo/
 
 
 #### How to Use: ####
